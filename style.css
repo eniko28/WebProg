@@ -79,12 +79,13 @@ td:not(:first-child) {
   text-align: right;
 }
 
-.teglalap{
+.teglalap1{
   display: inline-block;
   background-color:blueviolet ;
 }
 
-.masik {
+.teglalap2 {
+  display: inline-block;
   background-color: blue;
 }
 
