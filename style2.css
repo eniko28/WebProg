@@ -1,0 +1,35 @@
+h1 {
+  text-align: center;
+  text-decoration: underline;
+  color: green;
+}
+body {
+  background-color: darkseagreen;
+}
+
+label,
+input {
+  display: block;
+  margin-bottom: 10px;
+}
+button {
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color:lightgreen;
+  color: white;
+}
+
+button:hover {
+  background-color: darkgreen;
+}
+.kepek {
+  display: flex;
+
+}
+a {
+  color: white;
+}
+.jatekszabalyok {
+  color: darkgreen;
+}

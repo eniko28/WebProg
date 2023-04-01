@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="hu">
+  <head>
+    <script src = "./jatek.js">
+        
+    </script>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style2.css" />
+    <title>Kő, papír, olló</title>
+  </head>
+  <body>
+    <h1>Kő, Papír, Olló Játék</h1>
+    <div>
+      <p>
+        Kérlek írd be a beceneved és a rendelkezésedre álló pénzt a játék elindításához.
+      </p>
+    </div>
+    <form id="jatek">
+      <label for="becenev">Becenév</label>
+      <input type="text" id="becenev" />
+      <label for="penz">Pénz</label>
+      <input type="number" id="penz" />
+      <button type="button" id="indul"><a href="./game.html">Játék kezdése</a></button>
+    </form>
+    <div>
+      <h3 class="jatekszabalyok">Játékszabályok:</h3>
+      <p>
+        A kő elcsorbítja az ollót (tehát a kő nyer). Az olló elvágja a papírt (az
+        olló a nyertes). A papír becsomagolja a követ (a papír nyer). Neked választanod kell majd egyet a megjelenő képek közül, 
+        melyek követ, papírt, illetve ollót ábrázolnak. A gép random kiválasztja az ő tippjét és együtt fogtok játszani.
+      </p>
+    </div>
+  </body>
+</html>
