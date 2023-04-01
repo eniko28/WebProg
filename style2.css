@@ -33,3 +33,9 @@ a {
 .jatekszabalyok {
   color: darkgreen;
 }
+
+#becenevjs, #penzjs{
+  font-size: 35px;
+  color:darkgreen;
+  font-style: italic;
+}
