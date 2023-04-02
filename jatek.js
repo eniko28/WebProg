@@ -106,8 +106,6 @@ function jatekIndul() {
 function jatekUjrakezd() {
   var tovabb = localStorage.getItem("penz");
   var tovabb2 = localStorage.getItem("gepPenz");
-  console.log(tovabb);
-  console.log(tovabb2);
   if(tovabb >= 0 && tovabb2 >= 0){
     window.location.href = "./game.html";
   }
