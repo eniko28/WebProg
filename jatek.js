@@ -52,49 +52,49 @@ function jatekIndul() {
   if(this.alt === kepek[valasztottIndex].alt){
     setTimeout(function() {
     window.location.href = "./dontetlen.html";
-    }, 700);
+    }, 1000);
   }
   else
   if(this.alt === "Ko" && kepek[valasztottIndex].alt === "Papir"){
     gepPenz -= 10;
     setTimeout(function() {
     window.location.href = "./gep.html";
-   }, 700);
+   }, 1000);
   }
   else
     if(this.alt === "Papir" && kepek[valasztottIndex].alt === "Ko"){
       jatekosPenz -= 10;
       setTimeout(function() {
         window.location.href = "./jatekos.html";
-      }, 700);
+      }, 1000);
     }
     else
       if(this.alt === "Ko" && kepek[valasztottIndex].alt === "Ollo"){
         jatekosPenz -= 10;
         setTimeout(function() {
          window.location.href = "./jatekos.html";
-        }, 700);
+        }, 1000);
      }
      else
        if(this.alt === "Ollo" && kepek[valasztottIndex].alt === "Ko"){
         gepPenz -= 10;
         setTimeout(function() {
         window.location.href = "./gep.html";
-       }, 700);
+       }, 1000);
       }
       else
         if(this.alt === "Ollo" && kepek[valasztottIndex].alt === "Papir"){
           jatekosPenz -= 10;
           setTimeout(function() {
            window.location.href = "./jatekos.html";
-          }, 700);
+          }, 1000);
        }
        else
        if(this.alt === "Papir" && kepek[valasztottIndex].alt === "Ollo"){
         gepPenz -= 10;
         setTimeout(function() {
           window.location.href = "./gep.html";
-        }, 700);
+        }, 1000);
       }
       localStorage.setItem("penz", jatekosPenz);
       localStorage.setItem("gepPenz", gepPenz);
@@ -108,7 +108,7 @@ function jatekUjrakezd() {
   var tovabb2 = localStorage.getItem("gepPenz");
   console.log(tovabb);
   console.log(tovabb2);
-  if(tovabb >= 10 && tovabb2 >= 10){
+  if(tovabb >= 0 && tovabb2 >= 0){
     window.location.href = "./game.html";
   }
   else{
