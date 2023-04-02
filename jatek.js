@@ -49,54 +49,52 @@ function jatekIndul() {
 
   eredmenyElem.innerHTML = eredmeny;
 
-  if(this.src === kepek[valasztottIndex].src){
-    jatekosPenz -= 10;
-    gepPenz -= 10;
+  if(this.alt === kepek[valasztottIndex].alt){
     setTimeout(function() {
     window.location.href = "./dontetlen.html";
-    }, 500);
+    }, 700);
   }
   else
-  if(this.src === "ko.jpeg" && kepek[valasztottIndex].src === "papir.jpeg"){
+  if(this.alt === "Ko" && kepek[valasztottIndex].alt === "Papir"){
     gepPenz -= 10;
     setTimeout(function() {
     window.location.href = "./gep.html";
-   }, 500);
+   }, 700);
   }
   else
-    if(this.src === "papir.jpeg" && kepek[valasztottIndex].src === "ko.jpeg"){
+    if(this.alt === "Papir" && kepek[valasztottIndex].alt === "Ko"){
       jatekosPenz -= 10;
       setTimeout(function() {
         window.location.href = "./jatekos.html";
-      }, 500);
+      }, 700);
     }
     else
-      if(this.src === "ko.jpeg" && kepek[valasztottIndex].src === "ollo.jpg"){
+      if(this.alt === "Ko" && kepek[valasztottIndex].alt === "Ollo"){
         jatekosPenz -= 10;
         setTimeout(function() {
          window.location.href = "./jatekos.html";
-        }, 500);
+        }, 700);
      }
      else
-       if(this.src === "ollo.jpg" && kepek[valasztottIndex].src === "ko.jpeg"){
+       if(this.alt === "Ollo" && kepek[valasztottIndex].alt === "Ko"){
         gepPenz -= 10;
         setTimeout(function() {
         window.location.href = "./gep.html";
-       }, 500);
+       }, 700);
       }
       else
-        if(this.src === "ollo.jpg" && kepek[valasztottIndex].src === "papir.jpeg"){
+        if(this.alt === "Ollo" && kepek[valasztottIndex].alt === "Papir"){
           jatekosPenz -= 10;
           setTimeout(function() {
            window.location.href = "./jatekos.html";
-          }, 500);
+          }, 700);
        }
        else
-       if(this.src === "papir.jpeg" && kepek[valasztottIndex].src === "ollo.jpg"){
+       if(this.alt === "Papir" && kepek[valasztottIndex].alt === "Ollo"){
         gepPenz -= 10;
         setTimeout(function() {
           window.location.href = "./gep.html";
-        }, 500);
+        }, 700);
       }
       localStorage.setItem("penz", jatekosPenz);
       localStorage.setItem("gepPenz", gepPenz);
@@ -110,12 +108,10 @@ function jatekUjrakezd() {
   var tovabb2 = localStorage.getItem("gepPenz");
   console.log(tovabb);
   console.log(tovabb2);
-  if(tovabb >= 10 && tovabb2 >= 10)
-  {
+  if(tovabb >= 10 && tovabb2 >= 10){
     window.location.href = "./game.html";
   }
-  else
-  {
+  else{
     window.location.href = "./gameover.html"
   }
 }
