@@ -25,7 +25,6 @@ button:hover {
 }
 .kepek {
   display: flex;
-
 }
 a {
   color: white;
@@ -34,8 +33,13 @@ a {
   color: darkgreen;
 }
 
-#becenevjs, #penzjs{
+#becenevjs, #penzjs, #penz2js{
   font-size: 35px;
   color:darkgreen;
   font-style: italic;
+}
+
+#dontetlen, #jatekos, #gep, #gameover{
+  text-align: center;
+  margin: 300px;
 }
