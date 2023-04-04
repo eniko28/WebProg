@@ -1,8 +1,6 @@
-//generalom a gep penzet
 var gepPenz;
 
-//lementem a form-ba beirt jatekos nevet es penzet, majd atvaltok a masik html oldalra
-//lementem  a gep penzet is
+//lementem a form-ba beirt jatekos nevet es penzet, illetve a gep generalt penzet is, majd atvaltok a masik html oldalra
 function masikOldal() {
   const becenev = document.getElementById("becenev").value;
   const penz = document.getElementById("penz").value;
@@ -26,8 +24,7 @@ function betolt() {
   }
 }
 
-//a jatekos kivalaszt egy kepet, a gep general egy kepet, masik kep eltunik
-//majd megnezem hogy ki nyert
+//a jatekos kivalaszt egy kepet, a gep general egy kepet, csak ez a kep ket latszik a kepernyon, majd megnezem ki nyert
 function jatekIndul() {
 
   var jatekosPenz = parseInt(localStorage.getItem("penz"));
