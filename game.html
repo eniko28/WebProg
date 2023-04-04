@@ -2,11 +2,10 @@
 <html lang="hu">
   <head>
     <meta charset="UTF-8">
-    <script src = "./jatek.js"></script>
     <link rel="stylesheet" href="style2.css">
     <title>Jatek</title>
   </head>
-  <body onload="betolt()">
+  <body onload="betolt(); jatekIndul()">
     <h1>A játék elkezdődött!</h1>
     <div id="becenevjs"></div> 
     <br>
@@ -19,9 +18,10 @@
     </div>
     <div id="eredmeny"></div>
     <div class="kepek">
-      <img src="ko.jpeg" onload="jatekIndul()" alt="Ko">
+      <img src="ko.jpeg" alt="Ko">
       <img src="papir.jpeg" alt="Papir">
       <img src="ollo.jpg" alt="Ollo">
     </div>
+    <script src = "./jatek.js"></script>
   </body>
 </html>
