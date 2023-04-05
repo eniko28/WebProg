@@ -33,7 +33,7 @@ function jatekIndul() {
   const kepek = document.querySelectorAll('.kepek img');
 
   kepek.forEach((kep) => {
-    kep.addEventListener('click', function clickHandler() {
+    kep.addEventListener('click', function eltunik() {
       kepek.forEach((kep2) => {
         kep2.style.display = 'none';
       });
@@ -81,9 +81,18 @@ function jatekUjrakezd() {
   }
 }
 
-document.getElementById('indul').addEventListener('click', masikOldal);
-window.addEventListener('load', () => {
-  betolt();
-  jatekIndul();
-});
-document.getElementById('jatekUj').addEventListener('click', jatekUjrakezd);
+window.onload = () => {
+  const indulGomb = document.getElementById('indul');
+  if (indulGomb !== null) {
+    indulGomb.addEventListener('click', masikOldal);
+  }
+  const fooldal = document.getElementById('fooldal');
+  if (fooldal !== null) {
+    betolt();
+    jatekIndul();
+  }
+  const ujraGomb = document.getElementById('jatekUj');
+  if (ujraGomb !== null) {
+    ujraGomb.addEventListener('click', jatekUjrakezd);
+  }
+};
