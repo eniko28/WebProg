@@ -37,12 +37,17 @@ function jatekIndul() {
       kepek.forEach((kep2) => {
         kep2.style.display = 'none';
       });
-
       const valasztottIndex = Math.floor(Math.random() * kepek.length);
       const eredmenyElem = document.getElementById('eredmeny');
-      const eredmeny = `<img src="${this.src}"> <img src="${kepek[valasztottIndex].src}">}`;
+      const eredmeny1 = document.createElement('img');
+      const eredmeny2 = document.createElement('img');
 
-      eredmenyElem.innerHTML = eredmeny;
+      eredmeny1.src = this.src;
+      eredmeny2.src = kepek[valasztottIndex].src;
+
+      eredmenyElem.innerHTML = '';
+      eredmenyElem.appendChild(eredmeny1);
+      eredmenyElem.appendChild(eredmeny2);
 
       if (this.alt === kepek[valasztottIndex].alt) {
         setTimeout(() => {
