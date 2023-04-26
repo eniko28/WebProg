@@ -35,8 +35,9 @@ submitBtn2.disabled = true;
 function validateForm2() {
   const kod = document.getElementById('kod').value;
   const filefeltolt = document.getElementById('feltoltendofile').value;
-
-  if (kod === '' || filefeltolt === '') {
+  const fileInput = document.getElementById('feltoltendofile');
+  const maxFileSize = 3 * 1024 * 1024; // 3 MB
+  if (kod === '' || filefeltolt === '' || fileInput.files[0].size > maxFileSize) {
     submitBtn2.disabled = true;
     return false;
   }
