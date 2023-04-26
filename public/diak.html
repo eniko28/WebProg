@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Belep/kilep</title>
+</head>
+
+<body>
+    <h1>Csatlakozz egy tantárgyhoz, vagy lépj ki belőle! </h1>
+    <form>
+        <label for="code">Tantárgy kód:</label>
+        <input type="text" id="kod" name="kod" required><br>
+        <label for="code">Felhasználónév:</label>
+        <input type="text" id="usr" name="usr" required><br>
+        <p>Mit szeretnél:
+            <select name="ki/be">
+                <option value="male">Belpéni</option>
+                <option value="female" selected>Kilépni</option>
+            </select>
+        </p>
+        <input type="submit" value="Változtatások elküldése!">
+    </form>
+</body>
+
+</html>
