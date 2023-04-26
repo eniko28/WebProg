@@ -39,7 +39,7 @@ app.post('/felvitel', (req, res) => {
     labor: req.fields.labor,
     allomanyok: [],
   });
-  res.send('A tantargy sikeresen felveve!');
+  res.status(200).send('A tantargy sikeresen felveve!');
 });
 
 app.post('/allomanyok', (req, res) => {
@@ -54,7 +54,7 @@ app.post('/allomanyok', (req, res) => {
     res.status(406).send('Nem letezik ilyen kodu tantargy!');
     return;
   }
-  res.send('Az allomany(ok) sikeresen feltoltve!');
+  res.status(200).send('Az allomany(ok) sikeresen feltoltve!');
 });
 
 app.post('/csatlakozni', (req, res) => {
@@ -80,7 +80,7 @@ app.post('/csatlakozni', (req, res) => {
   }
   if (action === 'kilep') {
     csatlakozott.pop({ usr: req.fields.usr });
-    return res.send('A diak sikeresen kilepett!');
+    return res.status(200).send('A diak sikeresen kilepett!');
   }
   return res.redirect('/');
 });
