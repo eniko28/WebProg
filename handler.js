@@ -51,10 +51,10 @@ app.post('/allomanyok', (req, res) => {
     }
   }
   if (!talalt) {
-    res.status(406).send('Nem létezik ilyen kódú tantárgy!');
+    res.status(406).send('Nem letezik ilyen kodu tantargy!');
     return;
   }
-  res.send('Az állomány(ok) sikeresen feltöltve!');
+  res.send('Az allomany(ok) sikeresen feltoltve!');
 });
 
 app.post('/csatlakozni', (req, res) => {

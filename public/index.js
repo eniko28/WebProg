@@ -1,5 +1,5 @@
 const form1 = document.getElementById('ujtantargy');
-const submitBtn1 = document.getElementById('ujtantargy');
+const submitBtn1 = document.getElementById('ujtantargy').querySelector('input[type="submit"]');
 submitBtn1.disabled = true;
 
 function validateForm1() {
@@ -17,6 +17,11 @@ function validateForm1() {
   submitBtn1.disabled = false;
   return true;
 }
+
+form1.addEventListener('input', () => {
+  validateForm1();
+});
+
 form1.addEventListener('submit', (event) => {
   if (!validateForm1()) {
     event.preventDefault();
@@ -24,7 +29,7 @@ form1.addEventListener('submit', (event) => {
 });
 
 const form2 = document.getElementById('ujallomany');
-const submitBtn2 = document.getElementById('ujallomany input[type="submit"]');
+const submitBtn2 = document.getElementById('ujallomany').querySelector('input[type="submit"]');
 submitBtn2.disabled = true;
 
 function validateForm2() {
@@ -38,6 +43,11 @@ function validateForm2() {
   submitBtn2.disabled = false;
   return true;
 }
+
+form2.addEventListener('input', () => {
+  validateForm2();
+});
+
 form2.addEventListener('submit', (event) => {
   if (!validateForm2()) {
     event.preventDefault();
@@ -45,7 +55,7 @@ form2.addEventListener('submit', (event) => {
 });
 
 const form3 = document.getElementById('csatlakozas');
-const submitBtn3 = document.getElementById('csatlakozas input[type="submit"]');
+const submitBtn3 = document.getElementById('csatlakozas').querySelector('input[type="submit"]');
 submitBtn3.disabled = true;
 
 function validateForm3() {
@@ -59,6 +69,11 @@ function validateForm3() {
   submitBtn3.disabled = false;
   return true;
 }
+
+form3.addEventListener('input', () => {
+  validateForm3();
+});
+
 form3.addEventListener('submit', (event) => {
   if (!validateForm3()) {
     event.preventDefault();
