@@ -39,6 +39,7 @@ app.post('/felvitel', (req, res) => {
     labor: req.fields.labor,
     allomanyok: [],
   });
+  console.log(tantargyak);
   res.status(200).send('A tantargy sikeresen felveve!');
 });
 

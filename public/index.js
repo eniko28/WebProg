@@ -10,16 +10,7 @@ function validateForm1() {
   const szemi = document.getElementById('szemi').value;
   const labor = document.getElementById('labor').value;
 
-  if (
-    kod === '' ||
-    nev === '' ||
-    evfolyam === '' ||
-    kurzus === '' ||
-    szemi === '' ||
-    labor === '' ||
-    labor > kurzus ||
-    szemi > kurzus
-  ) {
+  if (kod === '' || nev === '' || evfolyam === '' || kurzus === '' || szemi === '' || labor === '') {
     submitBtn1.disabled = true;
     return false;
   }
