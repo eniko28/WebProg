@@ -10,7 +10,16 @@ function validateForm1() {
   const szemi = document.getElementById('szemi').value;
   const labor = document.getElementById('labor').value;
 
-  if (kod === '' || nev === '' || evfolyam === '' || kurzus === '' || szemi === '' || labor === '') {
+  if (
+    kod === '' ||
+    nev === '' ||
+    evfolyam === '' ||
+    kurzus === '' ||
+    szemi === '' ||
+    labor === '' ||
+    labor > kurzus ||
+    szemi > kurzus
+  ) {
     submitBtn1.disabled = true;
     return false;
   }
@@ -36,7 +45,7 @@ function validateForm2() {
   const kod = document.getElementById('kod').value;
   const filefeltolt = document.getElementById('feltoltendofile').value;
   const fileInput = document.getElementById('feltoltendofile');
-  const maxFileSize = 3 * 1024 * 1024; // 3 MB
+  const maxFileSize = 3 * 1024 * 1024;
   if (kod === '' || filefeltolt === '' || fileInput.files[0].size > maxFileSize) {
     submitBtn2.disabled = true;
     return false;
