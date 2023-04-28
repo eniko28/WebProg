@@ -19,15 +19,9 @@ if (!existsSync(uploadDir)) {
 app.use(eformidable({ uploadDir, keepExtensions: true, multiples: true }));
 
 app.post('/felvitel', (req, res) => {
-  let talalt = false;
-  for (let i = 0; i < tantargyak.length; i++) {
-    if (tantargyak[i].kod === req.fields.kod) {
-      talalt = true;
-      break;
-    }
-  }
+  const talalt = tantargyak.some((tantargy) => tantargy.kod === req.fields.kod);
   if (talalt) {
-    res.status(406).send('Van mar ilyen kodu tantargy!');
+    res.status(406).send('Van már ilyen kodu tantargy!');
     return;
   }
   tantargyak.push({
@@ -43,13 +37,7 @@ app.post('/felvitel', (req, res) => {
 });
 
 app.post('/allomanyok', (req, res) => {
-  let talalt = true;
-  for (let i = 0; i < tantargyak.length; i++) {
-    if (tantargyak[i].kod !== req.fields.kod) {
-      talalt = false;
-      break;
-    }
-  }
+  const talalt = tantargyak.some((tantargy) => tantargy.kod === req.fields.kod);
   if (!talalt) {
     res.status(406).send('Nem letezik ilyen kodu tantargy!');
     return;
@@ -67,7 +55,7 @@ app.post('/csatlakozni', (req, res) => {
   const { usr } = req.fields;
   const action = req.fields['ki/be'];
 
-  const tantargy = tantargyak.find((tantargyok) => tantargyok.kod === kod);
+  const tantargy = tantargyak.find((ujtantargy) => ujtantargy.kod === kod);
   if (!tantargy) {
     return res.status(406).send('Nem letezik ilyen kodu tantargy!');
   }
