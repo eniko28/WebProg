@@ -39,7 +39,6 @@ app.post('/felvitel', (req, res) => {
     labor: req.fields.labor,
     allomanyok: [],
   });
-  console.log(tantargyak);
   res.status(200).send('A tantargy sikeresen felveve!');
 });
 
@@ -55,6 +54,11 @@ app.post('/allomanyok', (req, res) => {
     res.status(406).send('Nem letezik ilyen kodu tantargy!');
     return;
   }
+  // az allomanyt lementem az adott id-ju tantargyhoz
+  const allomanykod = req.fields.kod;
+  const ujallomany = req.files.feltoltendofile;
+  const tantargyIndex = tantargyak.findIndex((tantargy) => tantargy.kod === allomanykod);
+  tantargyak[tantargyIndex].allomanyok.push(ujallomany);
   res.status(200).send('Az allomany(ok) sikeresen feltoltve!');
 });
 
