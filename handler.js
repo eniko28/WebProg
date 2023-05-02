@@ -44,7 +44,7 @@ app.post('/felvitel', (req, res) => {
     labor: req.fields.labor,
     allomanyok: [],
   });
-  res.status(200).send('A tantargy sikeresen felveve!');
+  res.status(200).send('A tantargy sikeresen felveve!!');
 });
 
 app.post('/allomanyok', (req, res) => {
