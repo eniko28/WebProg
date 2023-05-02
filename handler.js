@@ -19,6 +19,17 @@ if (!existsSync(uploadDir)) {
 app.use(eformidable({ uploadDir, keepExtensions: true, multiples: true }));
 
 app.post('/felvitel', (req, res) => {
+  if (
+    !req.fields.kod ||
+    !req.fields.nev ||
+    !req.fields.evfolyam ||
+    !req.fields.kurzus ||
+    !req.fields.szemi ||
+    !req.fields.labor
+  ) {
+    res.status(406).send('Minden mezo kitoltese kotelezo');
+    return;
+  }
   const talalt = tantargyak.some((tantargy) => tantargy.kod === req.fields.kod);
   if (talalt) {
     res.status(406).send('Van már ilyen kodu tantargy!');
@@ -37,6 +48,14 @@ app.post('/felvitel', (req, res) => {
 });
 
 app.post('/allomanyok', (req, res) => {
+  if (!req.fields.kod || !req.files.feltoltendofile) {
+    res.status(406).send('Minden mezo kitoltese kotelezo!');
+    return;
+  }
+  const maxFileSize = 3 * 1024 * 1024;
+  if (req.files.feltoltendofile > maxFileSize) {
+    res.status(406).send('A file merete tul nagy!');
+  }
   const talalt = tantargyak.some((tantargy) => tantargy.kod === req.fields.kod);
   if (!talalt) {
     res.status(406).send('Nem letezik ilyen kodu tantargy!');
@@ -51,31 +70,39 @@ app.post('/allomanyok', (req, res) => {
 });
 
 app.post('/csatlakozni', (req, res) => {
+  if (!req.fields.kod || !req.fields.usr) {
+    res.status(406).send('Minden mezo kitoltese kotelezo!');
+    return;
+  }
   const { kod } = req.fields;
   const { usr } = req.fields;
   const action = req.fields['ki/be'];
-
   const tantargy = tantargyak.find((ujtantargy) => ujtantargy.kod === kod);
   if (!tantargy) {
-    return res.status(406).send('Nem letezik ilyen kodu tantargy!');
+    res.status(406).send('Nem letezik ilyen kodu tantargy!');
+    return;
   }
   const van = csatlakozott.find((csatlakozottmar) => csatlakozottmar.usr === usr);
   if (action === 'belep' && van) {
-    return res.status(406).send('A diak mar csatlakozott ehhez a tantargyhoz!');
+    res.status(406).send('A diak mar csatlakozott ehhez a tantargyhoz!');
+    return;
   }
   if (action === 'kilep' && !van) {
-    return res.status(406).send('A diak nem resze ennek a tantargynak!');
+    res.status(406).send('A diak nem resze ennek a tantargynak!');
+    return;
   }
 
   if (action === 'belep') {
     csatlakozott.push({ usr: req.fields.usr });
-    return res.send('A diak sikeresen hozza lett adva a tantargyhoz!');
+    res.send('A diak sikeresen hozza lett adva a tantargyhoz!');
+    return;
   }
   if (action === 'kilep') {
     csatlakozott.pop({ usr: req.fields.usr });
-    return res.status(200).send('A diak sikeresen kilepett!');
+    res.status(200).send('A diak sikeresen kilepett!');
+    return;
   }
-  return res.redirect('/');
+  res.redirect('/');
 });
 
 app.get('/', (req, res) => {
