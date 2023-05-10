@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Tantargy hozzaadasa</title>
+</head>
+
+<body>
+    <button onclick="window.location.href='/tantargy'">Tantargy hozzaadasa</button>
+    <!-- <button onclick="window.location.href='/allomany'">Allomany feltoltese</button> -->
+    <button onclick="window.location.href='/felhasznalo'">Ki/Be Csatlakozas</button>
+    <h2>Mar bevezetett tantargyak: </h2>
+    <% tantargyak.forEach(function(item) { %>
+        <div>
+            <h2>
+                <%= item.nev %>
+            </h2>
+            <p>Kód: <%= item.kod %>
+            </p>
+            <p>Évfolyam: <%= item.evfolyam %>
+            </p>
+            <p>Kurzus óraszáma: <%= item.kurzus %>
+            </p>
+            <p>Szeminárium óraszáma: <%= item.szemi %>
+            </p>
+            <p>Labor óraszáma: <%= item.labor %>
+            </p>
+            <button onclick="window.location.href='/allomany'">Details</button>
+
+        </div>
+        <% }); %>
+            </div>
+</body>
+
+</html>

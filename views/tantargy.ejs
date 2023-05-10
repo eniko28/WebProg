@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Tantargy hozzaadasa</title>
+</head>
+
+<body>
+    <div id="tantargyhozzaad">
+        <h1>Adjon hozzá egy új órát az órarendhez!</h1>
+        <form id="ujtantargy" action="/tantargy" method="POST">
+            <label for="code">Kód:</label>
+            <input type="text" id="kod" name="kod"><br>
+
+            <label for="nev">Név:</label>
+            <input type="text" id="nev" name="nev"><br>
+
+            <label for="evfolyam">Évfolyam:</label>
+            <input type="number" id="evfolyam" name="evfolyam"><br>
+
+            <label for="kruzus">Kurzus óraszáma:</label>
+            <input type="number" id="kurzus" name="kurzus"><br>
+
+            <label for="szemi">Szeminárium óraszáma:</label>
+            <input type="number" id="szemi" name="szemi"><br>
+
+            <label for="labor">Labor óraszáma:</label>
+            <input type="number" id="labor" name="labor"><br>
+
+            <input type="submit" value="Tantárgy felvitele">
+        </form>
+
+</body>
+
+</html>

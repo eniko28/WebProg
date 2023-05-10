@@ -8,19 +8,27 @@
 
 <body>
     <h1>Csatlakozz egy tantárgyhoz, vagy lépj ki belőle! </h1>
-    <form>
+    <form id="ujfelhasznalo" action="/felhasznalo" method="POST">
         <label for="code">Tantárgy kód:</label>
         <input type="text" id="kod" name="kod" required><br>
         <label for="code">Felhasználónév:</label>
         <input type="text" id="usr" name="usr" required><br>
         <p>Mit szeretnél:
             <select name="ki/be">
-                <option value="male">Belpéni</option>
-                <option value="female" selected>Kilépni</option>
+                <option value="belep">Belpéni</option>
+                <option value="kilep" selected>Kilépni</option>
             </select>
         </p>
         <input type="submit" value="Változtatások elküldése!">
     </form>
+    <% felhasznalok.forEach(function(item) { %>
+        <div>
+            <h2>A <%= item.usr %> felhasználó csatlakozott a következő kódú tantárgyakhoz:</h2>
+
+            <p>Kód: <%= item.kod %>
+            </p>
+        </div>
+        <% }); %>
 </body>
 
 </html>

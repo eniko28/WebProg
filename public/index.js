@@ -28,7 +28,7 @@ form1.addEventListener('submit', (event) => {
   }
 });
 
-const form2 = document.getElementById('ujallomany');
+/* const form2 = document.getElementById('ujallomany');
 const submitBtn2 = document.getElementById('ujallomany').querySelector('input[type="submit"]');
 submitBtn2.disabled = true;
 
@@ -79,4 +79,4 @@ form3.addEventListener('submit', (event) => {
   if (!validateForm3()) {
     event.preventDefault();
   }
-});
+}); */

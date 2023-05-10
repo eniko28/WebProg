@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Allomany feltoltese</title>
+</head>
+
+<body>
+    <h2>A bevezetett allomanyok az adott tantargyhoz a kovetkezok:</h2>
+    <% allomanyok.filter(function(item) { return item.kod===1234 ; }).forEach(function(item) { %>
+        <div>
+            <h2>A tantargy kodja: <%= item.kod %>
+            </h2>
+            <p>Tartalom: <%= item.feltoltendofile %><a href="/letoltes?file=<%= item.feltoltendofile %>">Letöltés</a>
+            </p>
+        </div>
+        <% }); %>
+            <h1>Toltson fel egy uj allomanyt a tantargyhoz: </h1>
+            <form id="ujallomany" action="/allomany" method="POST">
+                <label for="feltoltendofile">Válassza ki a feltöltendő file-t:</label>
+                <input type="file" id="feltoltendofile" name="feltoltendofile"> <br>
+
+                <input type="submit" value="Allomany hozzaadasa!">
+            </form>
+</body>
+
+</html>
