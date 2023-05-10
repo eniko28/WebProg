@@ -8,7 +8,7 @@
 
 <body>
     <h2>A bevezetett allomanyok az adott tantargyhoz a kovetkezok:</h2>
-    <% allomanyok.filter(function(item) { return item.kod===1234 ; }).forEach(function(item) { %>
+    <% allomanyok.filter(function(item) { return item.kod===1111 ; }).forEach(function(item) { %>
         <div>
             <h2>A tantargy kodja: <%= item.kod %>
             </h2>
@@ -17,7 +17,7 @@
         </div>
         <% }); %>
             <h1>Toltson fel egy uj allomanyt a tantargyhoz: </h1>
-            <form id="ujallomany" action="/allomany" method="POST">
+            <form id="ujallomany" action="/allomany" method="POST" enctype="multipart/form-data">
                 <label for="feltoltendofile">Válassza ki a feltöltendő file-t:</label>
                 <input type="file" id="feltoltendofile" name="feltoltendofile"> <br>
 

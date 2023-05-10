@@ -86,7 +86,7 @@ export const insertFelhasznalo = (a, b) => {
 };
 
 export const insertAllomany = (a) => {
-  const query = `INSERT INTO allomany VALUES (
+  const query = `INSERT INTO allomany(nev) VALUES (
     "${a}");`;
 
   return dbConnection.executeQuery(query);

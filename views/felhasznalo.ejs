@@ -8,7 +8,7 @@
 
 <body>
     <h1>Csatlakozz egy tantárgyhoz, vagy lépj ki belőle! </h1>
-    <form id="ujfelhasznalo" action="/felhasznalo" method="POST">
+    <form id="ujfelhasznalo" action="/felhasznalo" method="POST" enctype="multipart/form-data">
         <label for="code">Tantárgy kód:</label>
         <input type="text" id="kod" name="kod" required><br>
         <label for="code">Felhasználónév:</label>
@@ -21,10 +21,9 @@
         </p>
         <input type="submit" value="Változtatások elküldése!">
     </form>
+    <h2>A Csatlakozva vannak a kovetkezo tantargyakhoz:</h2>
     <% felhasznalok.forEach(function(item) { %>
         <div>
-            <h2>A <%= item.usr %> felhasználó csatlakozott a következő kódú tantárgyakhoz:</h2>
-
             <p>Kód: <%= item.kod %>
             </p>
         </div>

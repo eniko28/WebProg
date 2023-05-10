@@ -1,23 +1,32 @@
 import express from 'express';
-import path from 'path';
+import { existsSync, mkdirSync } from 'fs';
+import { join } from 'path';
 import morgan from 'morgan';
+import eformidable from 'express-formidable';
 import errorMiddleware from './middleware/error.js';
 import requestRoutes from './routes/requests.js';
 import { createTable } from './db/requests.js';
 
 const app = express();
+
 const router = express.Router();
 
 app.use(express.urlencoded({ extended: true }));
 
+app.use(express.static('public'));
+
+const uploadDir = join(process.cwd(), 'uploadDir');
+if (!existsSync(uploadDir)) {
+  mkdirSync(uploadDir);
+}
+app.use(eformidable({ uploadDir, keepExtensions: true, multiples: true }));
+
 app.set('view engine', 'ejs');
-app.set('views', path.join(process.cwd(), 'views'));
+app.set('views', join(process.cwd(), 'views'));
 
 router.use(morgan('tiny'));
 
 app.use('/', requestRoutes);
-app.use('/allomany', requestRoutes);
-app.use('/felhasznalo', requestRoutes);
 
 app.use(errorMiddleware);
 

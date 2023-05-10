@@ -1,7 +1,4 @@
 import express from 'express';
-import { existsSync, mkdirSync } from 'fs';
-import { join } from 'path';
-import eformidable from 'express-formidable';
 import * as db from '../db/requests.js';
 
 const app = express();
@@ -11,12 +8,6 @@ const router = express.Router();
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static('public'));
-
-const uploadDir = join(process.cwd(), 'uploadDir');
-if (!existsSync(uploadDir)) {
-  mkdirSync(uploadDir);
-}
-app.use(eformidable({ uploadDir, keepExtensions: true, multiples: true }));
 
 router.get('/', async (req, res) => {
   try {
@@ -38,7 +29,7 @@ router.get('/tantargy', async (req, res) => {
 
 router.post('/tantargy', async (req, res) => {
   try {
-    const { kod, nev, evfolyam, kurzus, szemi, labor } = await req.body;
+    const { kod, nev, evfolyam, kurzus, szemi, labor } = await req.fields;
     await db.insertTantargy(kod, nev, evfolyam, kurzus, szemi, labor);
     res.redirect('/');
   } catch (err) {
@@ -57,7 +48,7 @@ router.get('/allomany', async (req, res) => {
 
 router.post('/allomany', async (req, res) => {
   try {
-    const { feltoltendofile } = await req.body;
+    const feltoltendofile = await req.files.feltoltendofile;
     await db.insertAllomany(feltoltendofile);
     res.redirect('/');
   } catch (err) {
@@ -76,8 +67,8 @@ router.get('/felhasznalo', async (req, res) => {
 
 router.post('/felhasznalo', async (req, res) => {
   try {
-    const { kod, usr } = await req.body;
-    const action = await req.body['ki/be'];
+    const { kod, usr } = await req.fields;
+    const action = await req.fields['ki/be'];
     if (action === 'belep') {
       await db.insertFelhasznalo(kod, usr);
       res.redirect('/');
