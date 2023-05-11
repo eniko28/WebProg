@@ -29,7 +29,7 @@ router.get('/tantargy', async (req, res) => {
 
 router.post('/tantargy', async (req, res) => {
   try {
-    const { kod, nev, evfolyam, kurzus, szemi, labor } = await req.fields;
+    const { kod, nev, evfolyam, kurzus, szemi, labor } = req.fields;
     if (!kod || !nev || !evfolyam || !kurzus || !szemi || !labor) {
       res.status(400).render('error', { message: 'Minden mezo kitoltese kotelezo!' });
       return;
@@ -62,7 +62,7 @@ router.post('/allomany', async (req, res) => {
       res.status(400).render('error', { message: 'Minden mezo kitoltese kotelezo!' });
       return;
     }
-    const feltoltendofile = await req.files.feltoltendofile.name;
+    const feltoltendofile = req.files.feltoltendofile.name;
     await db.insertAllomany(req.fields.id, feltoltendofile);
     res.redirect('/');
   } catch (err) {
@@ -87,8 +87,8 @@ router.post('/felhasznalo', async (req, res) => {
       res.status(400).render('error', { message: 'Minden mezo kitoltese kotelezo!' });
       return;
     }
-    const { kod, usr } = await req.fields;
-    const action = await req.fields['ki/be'];
+    const { kod, usr } = req.fields;
+    const action = req.fields['ki/be'];
     const diaktantargyban = await db.findDiakTantargyban(kod, usr);
     if (action === 'belep' && diaktantargyban.length === 0) {
       await db.insertJelentkezes(kod, usr);
