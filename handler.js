@@ -2,7 +2,6 @@ import express from 'express';
 import { existsSync, mkdirSync } from 'fs';
 import { join } from 'path';
 import eformidable from 'express-formidable';
-import { insertTantargy } from './db/requests.js';
 
 const app = express();
 
@@ -20,7 +19,6 @@ if (!existsSync(uploadDir)) {
 app.use(eformidable({ uploadDir, keepExtensions: true, multiples: true }));
 
 app.post('/felvitel', (req, res) => {
-  insertTantargy(req.fields);
   if (
     !req.fields.kod ||
     !req.fields.nev ||

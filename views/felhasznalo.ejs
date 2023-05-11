@@ -4,15 +4,29 @@
 <head>
     <meta charset="UTF-8" />
     <title>Belep/kilep</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <h1>Csatlakozz egy tantárgyhoz, vagy lépj ki belőle! </h1>
     <form id="ujfelhasznalo" action="/felhasznalo" method="POST" enctype="multipart/form-data">
-        <label for="code">Tantárgy kód:</label>
-        <input type="text" id="kod" name="kod" required><br>
-        <label for="code">Felhasználónév:</label>
-        <input type="text" id="usr" name="usr" required><br>
+        <label for="usr">Felhasználónév:</label>
+        <select id="usr" name="usr">
+            <% felhasznalok.forEach(function(item) { %>
+                <option value="<%= item.nev %>">
+                    <%= item.nev %>
+                </option>
+                <% }); %>
+        </select>
+
+        <label for="kod">Tantárgy kód:</label>
+        <select id="kod" name="kod">
+            <% tantargyak.forEach(function(item) { %>
+                <option value="<%= item.kod %>">
+                    <%= item.kod %>
+                </option>
+                <% }); %>
+        </select>
         <p>Mit szeretnél:
             <select name="ki/be">
                 <option value="belep">Belpéni</option>
@@ -21,13 +35,7 @@
         </p>
         <input type="submit" value="Változtatások elküldése!">
     </form>
-    <h2>A Csatlakozva vannak a kovetkezo tantargyakhoz:</h2>
-    <% felhasznalok.forEach(function(item) { %>
-        <div>
-            <p>Kód: <%= item.kod %>
-            </p>
-        </div>
-        <% }); %>
+    <script src="./valid.js"></script>
 </body>
 
 </html>

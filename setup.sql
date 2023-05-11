@@ -1,14 +1,18 @@
--- Segédállomány, hogy előkészítsünk egy MySQL adatbázist a példaprogramnak.
--- Futtatás konzolról (UNIX rendszeren): 
---     mysql -u root -p <setup.sql
-
--- az alábbi sor törli az adatbázist ha nem létezik
--- DROP DATABASE IF EXISTS webprog;
-
--- készít egy adatbázist
 CREATE DATABASE IF NOT EXISTS webprog;
 
--- készít egy felhasználót, aki minden műveletet végrehajthat ezen adatbázisban
 USE webprog;
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY 'root';
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'root';
+
+CREATE TABLE IF NOT EXISTS felhasznalo (
+  kod INT,
+  nev VARCHAR(50) PRIMARY KEY
+);
+
+INSERT INTO felhasznalo (nev)
+VALUES ('abcd1234'),
+       ('efgh1234'),
+       ('ijkl1234'),
+       ('mnop1234'),
+       ('rstz1234'),
+       ('xqwy1234');

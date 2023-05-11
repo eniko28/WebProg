@@ -1,5 +1,5 @@
 import express from 'express';
-import { insertTantargy, insertAllomany, insertFelhasznalo } from '../db/requests.js';
+import { insertTantargy, insertAllomany, insertJelentkezes } from '../db/requests.js';
 
 const app = express();
 
@@ -16,7 +16,7 @@ export default async function requestTantargy(req, res, next) {
 
 export async function requestFelhasznalo(req, res, next) {
   try {
-    await insertFelhasznalo(req);
+    await insertJelentkezes(req);
     next();
   } catch (err) {
     res.status(500).render('error', { message: `Sikertelen beszuras a felhasznalok tablaba: ${err.message}` });

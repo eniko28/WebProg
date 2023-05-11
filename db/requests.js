@@ -17,7 +17,6 @@ export const createTable = async () => {
   }
   try {
     await dbConnection.executeQuery(`CREATE TABLE IF NOT EXISTS felhasznalo (
-      kod INT,
       nev VARCHAR(50) PRIMARY KEY)
     `);
     console.log('Felhasznalo tabla sikeresen letrehozva');
@@ -78,21 +77,29 @@ export const insertTantargy = (a, b, c, d, e, f) => {
   return dbConnection.executeQuery(query);
 };
 
-export const insertFelhasznalo = (a, b) => {
-  const query = `INSERT INTO felhasznalo VALUES (
-    "${a}", "${b}" );`;
+export const insertJelentkezes = (a, b) => {
+  const query = `INSERT INTO jelentkezes (tkod, fnev) VALUES ("${a}", "${b}")`;
+  return dbConnection.executeQuery(query);
+};
+
+export const insertAllomany = (a, b) => {
+  const query = `INSERT INTO allomany(kod, nev) VALUES (
+    "${a}", "${b}");`;
 
   return dbConnection.executeQuery(query);
 };
 
-export const insertAllomany = (a) => {
-  const query = `INSERT INTO allomany(nev) VALUES (
-    "${a}");`;
-
+export const deleteJelentkezes = (a, b) => {
+  const query = `DELETE FROM jelentkezes WHERE jelentkezes.fnev = "${b}" AND jelentkezes.tkod= "${a}";`;
   return dbConnection.executeQuery(query);
 };
 
-export const deleteFelhasznalo = (a, b) => {
-  const query = `DELETE FROM felhasznalo WHERE felhasznalo.nev = "${b}";`;
+export const findTantargyKod = (a) => {
+  const query = `SELECT * FROM tantargy WHERE tantargy.kod="${a}"`;
+  return dbConnection.executeQuery(query);
+};
+
+export const findDiakTantargyban = (a, b) => {
+  const query = `SELECT * FROM jelentkezes WHERE jelentkezes.tkod="${a}" AND jelentkezes.fnev="${b}"`;
   return dbConnection.executeQuery(query);
 };
