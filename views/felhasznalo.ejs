@@ -8,33 +8,35 @@
 </head>
 
 <body>
-    <h1>Csatlakozz egy tantárgyhoz, vagy lépj ki belőle! </h1>
-    <form id="ujfelhasznalo" action="/felhasznalo" method="POST" enctype="multipart/form-data">
-        <label for="usr">Felhasználónév:</label>
-        <select id="usr" name="usr">
-            <% felhasznalok.forEach(function(item) { %>
-                <option value="<%= item.nev %>">
-                    <%= item.nev %>
-                </option>
-                <% }); %>
-        </select>
-
-        <label for="kod">Tantárgy kód:</label>
-        <select id="kod" name="kod">
-            <% tantargyak.forEach(function(item) { %>
-                <option value="<%= item.kod %>">
-                    <%= item.kod %>
-                </option>
-                <% }); %>
-        </select>
-        <p>Mit szeretnél:
-            <select name="ki/be">
-                <option value="belep">Belpéni</option>
-                <option value="kilep" selected>Kilépni</option>
+    <div>
+        <h1>Csatlakozz egy tantárgyhoz, vagy lépj ki belőle! </h1>
+        <form id="ujfelhasznalo" action="/felhasznalo" method="POST" enctype="multipart/form-data">
+            <label for="usr">Felhasználónév:</label>
+            <select id="usr" name="usr">
+                <% felhasznalok.forEach(function(item) { %>
+                    <option value="<%= item.nev %>">
+                        <%= item.nev %>
+                    </option>
+                    <% }); %>
             </select>
-        </p>
-        <input type="submit" value="Változtatások elküldése!">
-    </form>
+
+            <label for="kod">Tantárgy kód:</label>
+            <select id="kod" name="kod">
+                <% tantargyak.forEach(function(item) { %>
+                    <option value="<%= item.kod %>">
+                        <%= item.kod %>
+                    </option>
+                    <% }); %>
+            </select>
+            <p>Mit szeretnél:
+                <select name="ki/be">
+                    <option value="belep">Belpéni</option>
+                    <option value="kilep" selected>Kilépni</option>
+                </select>
+            </p>
+            <input type="submit" value="Változtatások elküldése!">
+        </form>
+    </div>
     <script src="./valid.js"></script>
 </body>
 

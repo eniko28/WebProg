@@ -8,14 +8,14 @@
 </head>
 
 <body>
-    <h2>A bevezetett allomanyok az adott tantargyhoz a kovetkezok:</h2>
+    <h2>A bevezetett allomanyok a <%=id %> kodu tantargyhoz a kovetkezok:</h2>
     <% if (allomanyok.length> 0) { %>
         <ul>
-            <% allomanyok.forEach(function(tantargy) { %>
-                <% if (tantargy.kod==id) { %>
+            <% allomanyok.forEach(function(item) { %>
+                <% if (item.kod==id) { %>
                     <div>
-                        <a href="./uploadDir/<%= tantargy.nev %>" download>Letoltes</a>
-                        <%= tantargy.nev %>
+                        <a href="./<%= item.nev %>" download>Letoltes</a>
+                        <%= item.nev %>
                     </div>
                     <% } %>
                         <% }); %>
@@ -23,15 +23,17 @@
         <% } else { %>
             <p>Nincsenek allomanyok feltoltve ehhez a tantargyhoz.</p>
             <% } %>
-                <h1>Toltson fel egy uj allomanyt a tantargyhoz: </h1>
-                <form id="ujallomany" action="/allomany" method="POST" enctype="multipart/form-data">
-                    <label for="feltoltendofile">Válassza ki a feltöltendő file-t:</label>
-                    <input type="file" id="feltoltendofile" name="feltoltendofile" multiple> <br>
-                    <label for="id">A tantargy kodja: </label>
-                    <input type="'text" name='id' value=<%=id %>> <br>
+                <h1>Toltson fel egy uj allomanyt a <%=id %> kodu tantargyhoz: </h1>
+                <div>
+                    <form id="ujallomany" action="/allomany" method="POST" enctype="multipart/form-data">
+                        <label for="feltoltendofile">Válassza ki a feltöltendő file-t:</label>
+                        <input type="file" id="feltoltendofile" name="feltoltendofile" multiple> <br>
+                        <label for="id">A tantargy kodja: </label>
+                        <input type="'text" name='id' value=<%=id %>> <br>
 
-                    <input type="submit" value="Allomany hozzaadasa!">
-                </form>
+                        <input type="submit" value="Allomany hozzaadasa!">
+                    </form>
+                </div>
                 <script src="./valid.js"></script>
 </body>
 

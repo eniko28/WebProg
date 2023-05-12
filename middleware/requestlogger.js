@@ -14,7 +14,7 @@ export default async function requestTantargy(req, res, next) {
   }
 }
 
-export async function requestFelhasznalo(req, res, next) {
+export async function requestJelentkezes(req, res, next) {
   try {
     await insertJelentkezes(req);
     next();

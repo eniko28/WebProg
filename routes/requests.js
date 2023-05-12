@@ -62,7 +62,7 @@ router.post('/allomany', async (req, res) => {
       res.status(400).render('error', { message: 'Minden mezo kitoltese kotelezo!' });
       return;
     }
-    const feltoltendofile = req.files.feltoltendofile.name;
+    const feltoltendofile = req.files.feltoltendofile.path.split('\\').pop();
     await db.insertAllomany(req.fields.id, feltoltendofile);
     res.redirect('/');
   } catch (err) {
@@ -94,12 +94,12 @@ router.post('/felhasznalo', async (req, res) => {
       await db.insertJelentkezes(kod, usr);
       res.render('success', { message: `A ${usr} felhasznalo sikeresen hozzaadva a ${kod}  tantargyhoz` });
     } else if (action === 'belep' && diaktantargyban.length !== 0) {
-      res.render('error', { message: `A ${usr} felhasznalo mar be van jelentkezve a ${kod}  tantargyhoz` });
+      res.render('success', { message: `A ${usr} felhasznalo mar be van jelentkezve a ${kod}  tantargyhoz` });
     } else if (action === 'kilep' && diaktantargyban.length !== 0) {
       await db.deleteJelentkezes(kod, usr);
-      res.render('error', { message: `A ${usr} felhasznalo sikeresen torolve a ${kod}  tantargynol` });
+      res.render('success', { message: `A ${usr} felhasznalo sikeresen torolve a ${kod}  tantargynol` });
     } else if (action === 'kilep' && diaktantargyban.length === 0) {
-      res.render('error', { message: `A ${usr} felhasznalo nincs bejelentkezve a ${kod}  tantargyhoz` });
+      res.render('success', { message: `A ${usr} felhasznalo nincs bejelentkezve a ${kod}  tantargyhoz` });
     }
   } catch (err) {
     res.status(500).render('error', { message: `A felhasznalo eltavolitasa/beszurasa sikertelen: ${err.message}` });

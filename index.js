@@ -21,6 +21,8 @@ if (!existsSync(uploadDir)) {
 }
 app.use(eformidable({ uploadDir, keepExtensions: true, multiples: true }));
 
+app.use(express.static(uploadDir));
+
 app.set('view engine', 'ejs');
 app.set('views', join(process.cwd(), 'views'));
 

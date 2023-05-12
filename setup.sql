@@ -5,7 +5,6 @@ GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY 'root';
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'root';
 
 CREATE TABLE IF NOT EXISTS felhasznalo (
-  kod INT,
   nev VARCHAR(50) PRIMARY KEY
 );
 

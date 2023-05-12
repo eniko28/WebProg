@@ -16,15 +16,6 @@ export const createTable = async () => {
     process.exit(1);
   }
   try {
-    await dbConnection.executeQuery(`CREATE TABLE IF NOT EXISTS felhasznalo (
-      nev VARCHAR(50) PRIMARY KEY)
-    `);
-    console.log('Felhasznalo tabla sikeresen letrehozva');
-  } catch (err) {
-    console.error(`Sikertelen tablaletrehozas: felhasznalo: ${err}`);
-    process.exit(1);
-  }
-  try {
     await dbConnection.executeQuery(` CREATE TABLE IF NOT EXISTS jelentkezes (
       id INT AUTO_INCREMENT PRIMARY KEY,
       tkod INT,
