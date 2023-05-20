@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>Tantargy hozzaadasa</title>
+    <title>Fooldal</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -12,7 +12,7 @@
     <button onclick="window.location.href='/felhasznalo'">Ki/Be Csatlakozas</button>
     <h2>Mar bevezetett tantargyak: </h2>
     <% tantargyak.forEach(function(item) { %>
-        <div>
+        <div id="tantargy-<%= item.kod %>">
             <h2>
                 <%= item.nev %>
             </h2>

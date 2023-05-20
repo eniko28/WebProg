@@ -1,5 +1,7 @@
 import express from 'express';
-import { insertTantargy, insertAllomany, insertJelentkezes } from '../db/requests.js';
+import { insertTantargy } from '../db/tantargy.js';
+import { insertAllomany } from '../db/allomany.js';
+import { insertJelentkezes } from '../db/jelentkezes.js';
 
 const app = express();
 
@@ -19,7 +21,7 @@ export async function requestJelentkezes(req, res, next) {
     await insertJelentkezes(req);
     next();
   } catch (err) {
-    res.status(500).render('error', { message: `Sikertelen beszuras a felhasznalok tablaba: ${err.message}` });
+    res.status(500).render('error', { message: `Sikertelen beszuras a jelentkezes tablaba: ${err.message}` });
   }
 }
 

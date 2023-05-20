@@ -4,8 +4,12 @@ import { join } from 'path';
 import morgan from 'morgan';
 import eformidable from 'express-formidable';
 import errorMiddleware from './middleware/error.js';
-import requestRoutes from './routes/requests.js';
-import { createTable } from './db/requests.js';
+import tantargyRoutes from './routes/tantargyak.js';
+import allomanyRoutes from './routes/allomanyok.js';
+import jelentkezesRoutes from './routes/jelentkezok.js';
+import { createTableTantargy } from './db/tantargy.js';
+import { createTableAllomany } from './db/allomany.js';
+import { createTableJelentkezes } from './db/jelentkezes.js';
 
 const app = express();
 
@@ -28,12 +32,21 @@ app.set('views', join(process.cwd(), 'views'));
 
 router.use(morgan('tiny'));
 
-app.use('/', requestRoutes);
+app.use('/', tantargyRoutes);
+app.use('/', allomanyRoutes);
+app.use('/', jelentkezesRoutes);
 
 app.use(errorMiddleware);
 
-createTable().then(() => {
-  app.listen(7070, () => {
-    console.log('A szerver elindult: http://localhost:7070/ ...');
+createTableTantargy()
+  .then(() => createTableAllomany())
+  .then(() => createTableJelentkezes())
+  .then(() => {
+    app.listen(7070, () => {
+      console.log('A szerver elindult: http://localhost:7070/ ...');
+    });
+  })
+  .catch((err) => {
+    console.error('Hiba tortent a tablak letrehozasa soran:', err);
+    process.exit(1);
   });
-});

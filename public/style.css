@@ -1,14 +1,18 @@
 body {
-    background-image: url("hatterkep.jpg");
-    background-size: cover;
-    background-attachment: fixed;
-    text-align: center;
+  background-image: url('hatterkep.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  text-align: center;
 }
 
 h2 {
-    text-decoration:underline;
+  text-decoration: underline;
 }
 
 button {
-    background-color:cadetblue;
+  background-color: cadetblue;
+}
+
+div input {
+  margin-bottom: 10px;
 }

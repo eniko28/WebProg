@@ -1,3 +1,5 @@
+-- mysql -u root -p <setup.sql
+
 CREATE DATABASE IF NOT EXISTS webprog;
 
 USE webprog;
