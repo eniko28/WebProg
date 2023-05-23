@@ -21,6 +21,3 @@ async function deleteByName(nev) {
     console.error('Hiba tortent az allomany torlesekor:', error);
   }
 }
-
-showDetails('kod');
-deleteByName('nev');
