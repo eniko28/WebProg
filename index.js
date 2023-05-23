@@ -10,6 +10,8 @@ import jelentkezesRoutes from './routes/jelentkezok.js';
 import { createTableTantargy } from './db/tantargy.js';
 import { createTableAllomany } from './db/allomany.js';
 import { createTableJelentkezes } from './db/jelentkezes.js';
+import allomanyApi from './api/allomany.js';
+import tantargyApi from './api/tantargyak.js';
 
 const app = express();
 
@@ -35,6 +37,8 @@ router.use(morgan('tiny'));
 app.use('/', tantargyRoutes);
 app.use('/', allomanyRoutes);
 app.use('/', jelentkezesRoutes);
+app.use('/', allomanyApi);
+app.use('/', tantargyApi);
 
 app.use(errorMiddleware);
 

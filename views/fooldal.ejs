@@ -12,13 +12,13 @@
     <button onclick="window.location.href='/felhasznalo'">Ki/Be Csatlakozas</button>
     <h2>Mar bevezetett tantargyak: </h2>
     <% tantargyak.forEach(function(item) { %>
-        <div id="tantargy-<%= item.kod %>" onclick="showDetails(`<%= item.kod %>`)">
+        <div class="show-details" id="tantargy-<%= item.kod %>">
             <h2>
                 <%= item.nev %>
             </h2>
-            <p>Kód:<button onclick="showDetails(`<%= item.kod %>`)">
-                    <%= item.kod %>
-                </button></p>
+            <p>Kód:
+                <%= item.kod %>
+            </p>
             <p>Évfolyam: <%= item.evfolyam %>
             </p>
             <div id="details-<%= item.kod %>"></div>

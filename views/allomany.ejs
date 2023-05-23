@@ -16,7 +16,7 @@
                     <div id="allomany-<%= item.nev %>">
                         <a href="./<%= item.nev %>" download>Letoltes</a>
                         <%= item.nev %>
-                            <button onclick="deleteByName(`<%= item.nev %>`)">Torles</button>
+                            <button class="delete-button" data-nev="<%= item.nev %>">Torles</button>
                     </div>
                     <% } %>
                         <% }); %>
