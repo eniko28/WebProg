@@ -33,4 +33,10 @@ router.post('/allomany', async (req, res) => {
   }
 });
 
+router.delete('/allomany/:nev', async (req, res) => {
+  const { nev } = req.params;
+  await dballomany.deleteByName(nev);
+  res.send('Sikeres torles');
+});
+
 export default router;

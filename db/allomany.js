@@ -18,6 +18,12 @@ export const findAllAllomany = () => {
   const query = 'SELECT * FROM allomany';
   return dbConnection.executeQuery(query);
 };
+
+export const deleteByName = (nev) => {
+  const query = `DELETE FROM allomany WHERE allomany.nev = "${nev}"`;
+  return dbConnection.executeQuery(query);
+};
+
 export const insertAllomany = (a, b) => {
   const query = `INSERT INTO allomany(kod, nev) VALUES (
       "${a}", "${b}");`;

@@ -18,6 +18,12 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/fooldal/:kod', async (req, res) => {
+  const { kod } = req.params;
+  const tantargy = await dbtantargy.showDetails(kod);
+  res.json(tantargy);
+});
+
 router.get('/tantargy', async (req, res) => {
   try {
     const tantargyak = await dbtantargy.findAllTantargy();

@@ -12,25 +12,22 @@
     <button onclick="window.location.href='/felhasznalo'">Ki/Be Csatlakozas</button>
     <h2>Mar bevezetett tantargyak: </h2>
     <% tantargyak.forEach(function(item) { %>
-        <div id="tantargy-<%= item.kod %>">
+        <div id="tantargy-<%= item.kod %>" onclick="showDetails(`<%= item.kod %>`)">
             <h2>
                 <%= item.nev %>
             </h2>
-            <p>Kód: <%= item.kod %>
-            </p>
+            <p>Kód:<button onclick="showDetails(`<%= item.kod %>`)">
+                    <%= item.kod %>
+                </button></p>
             <p>Évfolyam: <%= item.evfolyam %>
             </p>
-            <p>Kurzus óraszáma: <%= item.kurzus %>
-            </p>
-            <p>Szeminárium óraszáma: <%= item.szemi %>
-            </p>
-            <p>Labor óraszáma: <%= item.labor %>
-            </p>
+            <div id="details-<%= item.kod %>"></div>
             <button onclick="window.location.href='/allomany?id=<%= item.kod %>'">Tartalom/hozzaadas</button>
-
         </div>
         <% }); %>
+
             </div>
+            <script src="./main.js"></script>
 </body>
 
 </html>

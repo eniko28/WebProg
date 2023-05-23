@@ -18,8 +18,13 @@ export const createTableTantargy = async () => {
 };
 
 export const findAllTantargy = () => {
-  const query = 'SELECT tantargy.kod, tantargy.nev, tantargy.evfolyam FROM tantargy';
+  const query = 'SELECT * FROM tantargy';
   return dbConnection.executeQuery(query);
+};
+
+export const showDetails = (kod) => {
+  const query = 'SELECT tantargy.kurzus, tantargy.szemi, tantargy.labor FROM tantargy WHERE tantargy.kod = ?';
+  return dbConnection.executeQuery(query, [kod]);
 };
 
 export const findAllFelhasznalo = () => {
