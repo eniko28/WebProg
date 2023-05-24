@@ -19,7 +19,7 @@ export class DbConnection {
     return new Promise((resolve, reject) => {
       this.pool.query(query, options, (error, results) => {
         if (error) {
-          reject(new Error(`Error while running '${query}: ${error}'`));
+          reject(new Error(`Hiba: '${query}: ${error}'`));
         }
         resolve(results);
       });

@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <h2>A bevezetett allomanyok a <%=id %> kodu tantargyhoz a kovetkezok:</h2>
+    <h1 class="nagy-cimek">A bevezetett állományok a <%=id %> kódú tantárgyhoz a következők:</h1>
     <% if (allomanyok.length> 0) { %>
         <ul>
             <% allomanyok.forEach(function(item) { %>
@@ -16,23 +16,23 @@
                     <div id="allomany-<%= item.nev %>">
                         <a href="./<%= item.nev %>" download>Letoltes</a>
                         <%= item.nev %>
-                            <button class="delete-button" data-nev="<%= item.nev %>">Torles</button>
+                            <button class="delete-button" data-nev="<%= item.nev %>">Törlés</button>
                     </div>
                     <% } %>
                         <% }); %>
         </ul>
         <% } else { %>
-            <p>Nincsenek allomanyok feltoltve ehhez a tantargyhoz.</p>
+            <p>Nincsenek állományok feltöltve ehhez a tantárgyhoz.</p>
             <% } %>
-                <h1>Toltson fel egy uj allomanyt a <%=id %> kodu tantargyhoz: </h1>
+                <h1 class="nagy-cimek">Töltsön fel egy új állományt a <%=id %> kódú tantárgyhoz: </h1>
                 <div>
                     <form id="ujallomany" action="/allomany" method="POST" enctype="multipart/form-data">
                         <label for="feltoltendofile">Válassza ki a feltöltendő file-t:</label>
                         <input type="file" id="feltoltendofile" name="feltoltendofile" multiple> <br>
-                        <label for="id">A tantargy kodja: </label>
+                        <label for="id">A tantárgy kódja: </label>
                         <input type="'text" name='id' value=<%=id %>> <br>
 
-                        <input type="submit" value="Allomany hozzaadasa!">
+                        <input class="submit-gomb" type="submit" value="Allomany hozzaadasa!">
                     </form>
                 </div>
                 <script src="./valid.js"></script>

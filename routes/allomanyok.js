@@ -15,21 +15,21 @@ router.get('/allomany', async (req, res) => {
     const { id } = req.query;
     res.render('allomany.ejs', { allomanyok, id });
   } catch (err) {
-    res.status(500).render('error', { message: `Az allomanyok listazasa sikertelen: ${err.message}` });
+    res.status(500).render('error', { message: `Az állományok listázása sikertelen: ${err.message}` });
   }
 });
 
 router.post('/allomany', async (req, res) => {
   try {
     if (!req.files.feltoltendofile) {
-      res.status(400).render('error', { message: 'Minden mezo kitoltese kotelezo!' });
+      res.status(400).render('error', { message: 'Minden mező kitöltése kötelező!' });
       return;
     }
     const feltoltendofile = req.files.feltoltendofile.path.split('\\').pop();
     await dballomany.insertAllomany(req.fields.id, feltoltendofile);
     res.redirect('/');
   } catch (err) {
-    res.status(500).render('error', { message: `Az allomany beszurasa sikertelen: ${err.message}` });
+    res.status(500).render('error', { message: `Az állomány betöltése beszúrása sikertelen: ${err.message}` });
   }
 });
 

@@ -7,9 +7,9 @@ export const createTableAllomany = async () => {
       kod INT,
       nev VARCHAR(50));
     `);
-    console.log('Allomany tabla sikeresen letrehozva');
+    // console.log('Állomány tábla sikeresen létrehozva');
   } catch (err) {
-    console.error(`Sikertelen tablaletrehozas: allomany: ${err}`);
+    console.error(`Sikertelen táblalétrehozás: állomány: ${err}`);
     process.exit(1);
   }
 };

@@ -9,9 +9,9 @@ export const createTableJelentkezes = async () => {
       FOREIGN KEY (tkod) REFERENCES tantargy(kod),
       FOREIGN KEY (fnev) REFERENCES felhasznalo(nev));
     `);
-    console.log('Jelentkezes tabla sikeresen letrehozva');
+    // console.log('Jelentkezés tábla sikeresen létrehozva');
   } catch (err) {
-    console.error(`Sikertelen tablaletrehozas: jelentkezes: ${err}`);
+    console.error(`Sikertelen táblalétrehozás: jelentkezés: ${err}`);
     process.exit(1);
   }
 };

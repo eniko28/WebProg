@@ -12,7 +12,7 @@ app.use(express.static('public'));
 router.get('/fooldal/:kod', async (req, res) => {
   const { kod } = req.params;
   if (kod < 0 || kod === '') {
-    res.status(400).send('Hiba: A tantargy kodja egy pozitiv szam kell legyen');
+    res.status(400).send('Hiba: A tantárgy kódja egy pozitív szám kell legyen');
   } else {
     const tantargy = await dbtantargy.showDetails(kod);
     res.json(tantargy);

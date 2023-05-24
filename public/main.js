@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const showDetails = async (kod) => {
     const result = await fetch(`./fooldal/${kod}`, { method: 'GET' });
     if (result.status === 400) {
-      alert('Sikertelen extra informaciok megjelenitese!');
+      alert('Sikertelen extra információk megjelenítése!');
     } else {
       const bodyJson = await result.json();
       let details = '';
@@ -19,9 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
       showDetails(kod);
     };
 
-  const showDetailsElements = document.getElementsByClassName('show-details');
-  for (let i = 0; i < showDetailsElements.length; i++) {
-    const element = showDetailsElements[i];
+  const showMore = document.getElementsByClassName('show-details');
+  for (let i = 0; i < showMore.length; i++) {
+    const element = showMore[i];
     const kod = element.id.split('-')[1];
     element.addEventListener('click', showDetailsOnClick(kod));
   }
@@ -32,9 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const result = await fetch(`./allomany/${nev}`, { method: 'DELETE' });
     if (result.status === 200) {
       document.getElementById(`allomany-${nev}`).remove();
-      alert('Az állomány sikeresen törölve lett');
+      alert('Az állomány sikeresen törölve lett!');
     } else {
-      alert('Hiba az állomány törlésekor');
+      alert('Hiba az állomány törlésekor!');
     }
   };
 

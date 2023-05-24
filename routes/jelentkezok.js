@@ -19,14 +19,14 @@ router.get('/felhasznalo', async (req, res) => {
     const { kod } = req.query;
     res.render('felhasznalo.ejs', { felhasznalok, kod, tantargyak });
   } catch (err) {
-    res.status(500).render('error', { message: `A felhasznalo listazasa sikertelen: ${err.message}` });
+    res.status(500).render('error', { message: `A felhasználó listázása sikertelen: ${err.message}` });
   }
 });
 
 router.post('/felhasznalo', async (req, res) => {
   try {
     if (!req.fields.kod || !req.fields.usr) {
-      res.status(400).render('error', { message: 'Minden mezo kitoltese kotelezo!' });
+      res.status(400).render('error', { message: 'Minden mező kitöltése kötelező!' });
       return;
     }
     const { kod, usr } = req.fields;
@@ -34,17 +34,17 @@ router.post('/felhasznalo', async (req, res) => {
     const diaktantargyban = await dbjelentkezes.findDiakTantargyban(kod, usr);
     if (action === 'belep' && diaktantargyban.length === 0) {
       await dbjelentkezes.insertJelentkezes(kod, usr);
-      res.render('success', { message: `A ${usr} felhasznalo sikeresen hozzaadva a ${kod}  tantargyhoz` });
+      res.render('success', { message: `A ${usr} felhasználó sikeresen hozzáadva a ${kod}  tantárgyhoz!` });
     } else if (action === 'belep' && diaktantargyban.length !== 0) {
-      res.render('success', { message: `A ${usr} felhasznalo mar be van jelentkezve a ${kod}  tantargyhoz` });
+      res.render('success', { message: `A ${usr} felhasználó már be van jelentkezve a ${kod}  tantárgyhoz!` });
     } else if (action === 'kilep' && diaktantargyban.length !== 0) {
       await dbjelentkezes.deleteJelentkezes(kod, usr);
-      res.render('success', { message: `A ${usr} felhasznalo sikeresen torolve a ${kod}  tantargybol` });
+      res.render('success', { message: `A ${usr} felhasználó sikeresen törölve a ${kod}  tantárgyból!` });
     } else if (action === 'kilep' && diaktantargyban.length === 0) {
-      res.render('success', { message: `A ${usr} felhasznalo nincs bejelentkezve a ${kod}  tantargyhoz` });
+      res.render('success', { message: `A ${usr} felhasználó nincs bejelentkezve a ${kod}  tantárgyhoz!` });
     }
   } catch (err) {
-    res.status(500).render('error', { message: `A felhasznalo eltavolitasa/beszurasa sikertelen: ${err.message}` });
+    res.status(500).render('error', { message: `Hiba: ${err.message}` });
   }
 });
 

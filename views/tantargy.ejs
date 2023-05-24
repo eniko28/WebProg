@@ -3,13 +3,13 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>Tantargy hozzaadasa</title>
+    <title>Tantárgy hozzáadása</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <div id="tantargyhozzaad">
-        <h1>Adjon hozzá egy új órát az órarendhez!</h1>
+        <h1 class="nagy-cimek">Adjon hozzá egy új órát az órarendhez!</h1>
         <form id="ujtantargy" action="/tantargy" method="POST" enctype="multipart/form-data">
             <label for="code">Kód:</label>
             <input type="text" id="kod" name="kod"><br>
@@ -29,7 +29,7 @@
             <label for="labor">Labor óraszáma:</label>
             <input type="number" id="labor" name="labor"><br>
 
-            <input type="submit" value="Tantárgy felvitele">
+            <input class="submit-gomb" type="submit" value="Tantárgy felvitele">
         </form>
     </div>
     <script src="./valid.js"></script>

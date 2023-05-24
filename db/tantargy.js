@@ -10,9 +10,9 @@ export const createTableTantargy = async () => {
       szemi INT,
       labor INT);
     `);
-    console.log('Tantargy tabla sikeresen letrehozva');
+    // console.log('Tantárgy tábla sikeresen létrehozva');
   } catch (err) {
-    console.error(`Sikertelen tablaletrehozas: tantargy: ${err}`);
+    console.error(`Sikertelen táblalétrehozás: tantárgy: ${err}`);
     process.exit(1);
   }
 };
