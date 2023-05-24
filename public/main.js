@@ -7,8 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const bodyJson = await result.json();
       let details = '';
       Object.keys(bodyJson[0]).forEach((key) => {
-        details += `${key}: ${bodyJson[0][key]}\n`;
+        const firstLetter = key.charAt(0).toUpperCase();
+        const restOfLetters = key.slice(1);
+        const formattedKey = firstLetter + restOfLetters;
+        details += `${formattedKey}: ${bodyJson[0][key]}\n\n`;
       });
+
       const detailsContainer = document.getElementById(`details-${kod}`);
       detailsContainer.innerText = details;
     }

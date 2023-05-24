@@ -35,7 +35,15 @@ div input {
   color: #1B833E;
 }
 
-#tantargy-nev, label, #felhasznalo-valasztas, .submit-gomb, .delete-button{
+#tantargy-nev, label, #felhasznalo-valasztas, .submit-gomb{
   color:#145B2B;
   font-size: 30px;
+}
+
+.delete-button{
+  color:#145B2B;
+  font-size: 20px;
+  width: 100px;
+  height: 25px;
+  background-color: #1FA260;
 }
