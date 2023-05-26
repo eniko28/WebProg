@@ -11,8 +11,8 @@ app.use(express.static('public'));
 
 router.get('/allomany', async (req, res) => {
   try {
-    const allomanyok = await dballomany.findAllAllomany();
     const { id } = req.query;
+    const allomanyok = await dballomany.findAllAllomanyById(id);
     res.render('allomany.ejs', { allomanyok, id });
   } catch (err) {
     res.status(500).render('error', { message: `Az állományok listázása sikertelen: ${err.message}` });
@@ -29,7 +29,7 @@ router.post('/allomany', async (req, res) => {
     await dballomany.insertAllomany(req.fields.id, feltoltendofile);
     res.redirect('/');
   } catch (err) {
-    res.status(500).render('error', { message: `Az állomány betöltése beszúrása sikertelen: ${err.message}` });
+    res.status(500).render('error', { message: `Az állomány beszúrása sikertelen: ${err.message}` });
   }
 });
 

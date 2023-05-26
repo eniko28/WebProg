@@ -19,6 +19,11 @@ export const findAllAllomany = () => {
   return dbConnection.executeQuery(query);
 };
 
+export const findAllAllomanyById = (id) => {
+  const query = `SELECT * FROM allomany WHERE allomany.kod = ${id}`;
+  return dbConnection.executeQuery(query);
+};
+
 export const deleteByName = (nev) => {
   const query = `DELETE FROM allomany WHERE allomany.nev = "${nev}"`;
   return dbConnection.executeQuery(query);
