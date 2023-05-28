@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1 class="nagy-cimek">Bejelentkezés: írja be a felhasználónevét és jelszavát! </h1>
+    <form id="login" action="/login" method="POST" enctype="multipart/form-data">
+        <label for="nev">Név:</label>
+        <input type="text" id="nev" name="nev"><br>
+
+        <label for="jelszo">Évfolyam:</label>
+        <input type="text" id="jelszo" name="jelszo"><br>
+
+        <input class="submit-gomb" type="submit" value="Bejelentkezés">
+    </form>
+</body>
+
+</html>

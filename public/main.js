@@ -1,20 +1,25 @@
 document.addEventListener('DOMContentLoaded', () => {
   const showDetails = async (kod) => {
-    const result = await fetch(`./fooldal/${kod}`, { method: 'GET' });
-    if (result.status === 400) {
-      alert('Sikertelen extra információk megjelenítése!');
-    } else {
-      const bodyJson = await result.json();
-      let details = '';
-      Object.keys(bodyJson[0]).forEach((key) => {
-        const firstLetter = key.charAt(0).toUpperCase();
-        const restOfLetters = key.slice(1);
-        const formattedKey = firstLetter + restOfLetters;
-        details += `${formattedKey}: ${bodyJson[0][key]}\n\n`;
-      });
+    try {
+      const result = await fetch(`./fooldal/${kod}`, { method: 'GET' });
+      if (result.status === 400) {
+        alert('Sikertelen extra információk megjelenítése!');
+      } else {
+        const bodyJson = await result.json();
+        let details = '';
+        Object.keys(bodyJson[0]).forEach((key) => {
+          const firstLetter = key.charAt(0).toUpperCase();
+          const restOfLetters = key.slice(1);
+          const formattedKey = firstLetter + restOfLetters;
+          details += `${formattedKey}: ${bodyJson[0][key]}\n\n`;
+        });
 
-      const detailsContainer = document.getElementById(`details-${kod}`);
-      detailsContainer.innerText = details;
+        const detailsContainer = document.getElementById(`details-${kod}`);
+        detailsContainer.innerText = details;
+      }
+    } catch (error) {
+      console.error('Hiba történt a lekérdezés során:', error);
+      alert('Hiba történt a lekérdezés során. Kérlek, próbáld újra később!');
     }
   };
 
@@ -33,12 +38,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
   const deleteByName = async (nev) => {
-    const result = await fetch(`./allomany/${nev}`, { method: 'DELETE' });
-    if (result.status === 200) {
-      document.getElementById(`allomany-${nev}`).remove();
-      alert('Az állomány sikeresen törölve lett!');
-    } else {
-      alert('Hiba az állomány törlésekor!');
+    try {
+      const result = await fetch(`./allomany/${nev}`, { method: 'DELETE' });
+      if (result.status === 200) {
+        document.getElementById(`allomany-${nev}`).remove();
+        alert('Az állomány sikeresen törölve lett!');
+      } else {
+        alert('Hiba az állomány törlésekor!');
+      }
+    } catch (error) {
+      console.error('Hiba történt az állomány törlése során:', error);
+      alert('Hiba történt az állomány törlése során. Kérlek, próbáld újra később!');
     }
   };
 

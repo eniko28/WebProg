@@ -1,6 +1,7 @@
 import express from 'express';
 import * as dbjelentkezes from '../db/jelentkezes.js';
 import * as dbtantargy from '../db/tantargy.js';
+import * as dbfelhasznalo from '../db/felhasznalok.js';
 
 const app = express();
 
@@ -12,8 +13,10 @@ app.use(express.static('public'));
 
 router.get('/felhasznalo', async (req, res) => {
   try {
+    // az osszes felhasznalonevet, illetve az osszes tantargy kodjat amelyek szerepelnek az adatbazisban, lementi,
+    // azert hogy majd meg tudja oket jeleniteni az oldalon
     const [felhasznalok, tantargyak] = await Promise.all([
-      dbjelentkezes.findAllFelhasznalo(),
+      dbfelhasznalo.findAllFelhasznalo(),
       dbtantargy.findAllTantargy(),
     ]);
     const { kod } = req.query;
@@ -29,6 +32,9 @@ router.post('/felhasznalo', async (req, res) => {
       res.status(400).render('error', { message: 'Minden mező kitöltése kötelező!' });
       return;
     }
+
+    // lekeri a kodot, a felhasznalonevet, illetve azt, hogy be vagy ki akar lepni egy tantargyba/bol
+    // minden esetben uzenetet kap arrol hogy sikeres volt-e a belepes/kilepes, illetve ha nem, volt sikeres, akkor miert nem
     const { kod, usr } = req.fields;
     const action = req.fields['ki/be'];
     const diaktantargyban = await dbjelentkezes.findDiakTantargyban(kod, usr);

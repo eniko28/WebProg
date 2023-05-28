@@ -51,6 +51,6 @@ createTableTantargy()
     });
   })
   .catch((err) => {
-    console.error('Hiba tortent a tablak letrehozasa soran:', err);
+    console.error('Hiba történt a táblák létrehozása során:', err);
     process.exit(1);
   });

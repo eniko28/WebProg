@@ -11,6 +11,7 @@ app.use(express.static('public'));
 
 router.get('/allomany', async (req, res) => {
   try {
+    // lekeri a kodot a sablonbol
     const { id } = req.query;
     const allomanyok = await dballomany.findAllAllomanyById(id);
     res.render('allomany.ejs', { allomanyok, id });
@@ -21,12 +22,30 @@ router.get('/allomany', async (req, res) => {
 
 router.post('/allomany', async (req, res) => {
   try {
-    if (!req.files.feltoltendofile) {
+    // ha valamelyik mezo ures, nem tolti fel az allomanyt, hibauzenetet kuld
+    if (!req.files.feltoltendofile || req.files.fileNev) {
       res.status(400).render('error', { message: 'Minden mező kitöltése kötelező!' });
       return;
     }
-    const feltoltendofile = req.files.feltoltendofile.path.split('\\').pop();
-    await dballomany.insertAllomany(req.fields.id, feltoltendofile);
+
+    let files = req.files.feltoltendofile;
+    const { id } = req.fields;
+
+    // ha csak egy allomany kerul feltoltesre, akkor atalakul egy egy elemu tombbe
+    if (!Array.isArray(files)) {
+      files = [files];
+    }
+
+    // megvarja, hogy az osszes allomanyt beszurja es utana folytatja a vegrehajtast
+    await Promise.all(
+      files.map(async (file) => {
+        const fileNev = file.name;
+        const feltoltendofile = file.path.split('\\').pop();
+        await dballomany.insertAllomany(id, fileNev, feltoltendofile);
+      }),
+    );
+
+    // visszamegy a fooldalra
     res.redirect('/');
   } catch (err) {
     res.status(500).render('error', { message: `Az állomány beszúrása sikertelen: ${err.message}` });

@@ -14,8 +14,8 @@
             <% allomanyok.forEach(function(item) { %>
                 <% if (item.kod==id) { %>
                     <div id="allomany-<%= item.nev %>">
-                        <a href="./<%= item.nev %>" download>Letoltes</a>
-                        <%= item.nev %>
+                        <%= item.fileNev %>
+                            <a class="download-button" href="./<%= item.nev %>" download>Letöltés</a>
                             <button class="delete-button" data-nev="<%= item.nev %>">Törlés</button>
                     </div>
                     <% } %>

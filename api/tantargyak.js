@@ -14,8 +14,13 @@ router.get('/fooldal/:kod', async (req, res) => {
   if (kod < 0 || kod === '') {
     res.status(400).send('Hiba: A tantárgy kódja egy pozitív szám kell legyen');
   } else {
-    const tantargy = await dbtantargy.showDetails(kod);
-    res.json(tantargy);
+    try {
+      const tantargy = await dbtantargy.showDetails(kod);
+      res.json(tantargy);
+    } catch (err) {
+      console.error('Hiba történt:', err);
+      res.status(500).send('Hiba történt a lekérdezés során');
+    }
   }
 });
 

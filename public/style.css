@@ -45,7 +45,7 @@ label, #felhasznalo-valasztas{
   font-size: 30px;
 }
 
-.delete-button{
+.delete-button, .download-button{
   color:#145B2B;
   font-size: 20px;
   width: 100px;
