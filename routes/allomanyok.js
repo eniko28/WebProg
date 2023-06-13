@@ -1,15 +1,17 @@
 import express from 'express';
+import cookieParser from 'cookie-parser';
 import * as dballomany from '../db/allomany.js';
-
-const app = express();
+import { authMiddleware } from '../middleware/auth.js';
 
 const router = express.Router();
 
-app.use(express.urlencoded({ extended: true }));
+router.use(express.urlencoded({ extended: true }));
 
-app.use(express.static('public'));
+router.use(express.static('public'));
 
-router.get('/allomany', async (req, res) => {
+router.use(cookieParser());
+
+router.get('/allomany', authMiddleware(['Tanár']), async (req, res) => {
   try {
     // lekeri a kodot a sablonbol
     const { id } = req.query;
@@ -45,8 +47,8 @@ router.post('/allomany', async (req, res) => {
       }),
     );
 
-    // visszamegy a fooldalra
-    res.redirect('/');
+    // marad az oldalon es frissul
+    res.redirect(`/allomany?id=${id}`);
   } catch (err) {
     res.status(500).render('error', { message: `Az állomány beszúrása sikertelen: ${err.message}` });
   }

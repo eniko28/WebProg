@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Belep/kilep</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body id="fooldalAdmin">
+    <button class="button-fooldal" id="kijelentkezes">Kijelentkezés</button>
+    <script src="./fooldalAdminMain.js"></script>
+    <div>
+        <button id="egy" class="button-fooldal" onclick="window.location.href='/tantargy'">Tantárgy hozzáadása</button>
+        <button id="ketto" class="button-fooldal" onclick="window.location.href='/keresek'">Tanárok kérései</button>
+        <h1 class="nagy-cimek">Rendeljen hozzá tanárokat tantárgyakhoz </h1>
+        <form id="tanarhozzzad" action="/tanarhozzaad" method="POST" enctype="multipart/form-data">
+            <label for="usr">Tanár felhasználóneve:</label>
+            <select id="usr" name="usr">
+                <% felhasznalok.forEach(function(item) { %>
+                    <option value="<%= item.nev %>">
+                        <%= item.nev %>
+                    </option>
+                    <% }); %>
+            </select>
+            <br>
+            <br>
+            <label for="kod">Tantárgy kód:</label>
+            <select id="kod" name="kod">
+                <% tantargyak.forEach(function(item) { %>
+                    <option value="<%= item.kod %>">
+                        <%= item.kod %>
+                    </option>
+                    <% }); %>
+            </select>
+
+            <p id="felhasznalo-valasztas">Mit szeretne:
+                <select name="ki/be">
+                    <option value="belep">Tantárgy hozzárendelés</option>
+                    <option value="kilep" selected>Tantárgy leválasztása</option>
+                </select>
+            </p>
+            <input class="submit-gomb" type="submit" value="Változtatások elküldése!">
+        </form>
+        <h1 class="nagy-cimek">Már bevezetett tantárgyak: </h1>
+        <% tantargyak.forEach(function(item) { %>
+            <div class="show-details" id="tantargy-<%= item.kod %>">
+                <h2 id="tantargy-nev">
+                    <%= item.nev %>
+                </h2>
+                <p>Kód:
+                    <%= item.kod %>
+                </p>
+                <p>Évfolyam: <%= item.evfolyam %>
+                </p>
+                <div id="details-<%= item.kod %>"></div>
+            </div>
+            <div id="adminGomb">
+                <button class="button-fooldal"
+                    onclick="window.location.href='/allomanyVendeg?id=<%= item.kod %>'">Állományok</button>
+                <% }); %>
+            </div>
+    </div>
+    <script src="./valid.js"></script>
+</body>
+
+</html>

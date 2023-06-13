@@ -7,12 +7,13 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body id="fooldal">
-    <a href="/adatok?felhasznalo=<%= felhasznalo %>&action=<%= action %>">Saját adatok</a>
+<body id="fooldalTanar">
     <button class="button-fooldal" id="kijelentkezes">Kijelentkezés</button>
-    <script src="./fooldalMain.js"></script>
+    <script src="./fooldalTanarMain.js"></script>
+    <button class="button-fooldal" onclick="window.location.href='/orarend?tkod=<%= felhasznalo %>'">Órarend
+        megtekíntése</button>
     <h1 class="nagy-cimek">Már bevezetett tantárgyak: </h1>
-    <% tantargyak.forEach(function(item) { %>
+    <% tantargyakTanar.forEach(function(item) { %>
         <div class="show-details" id="tantargy-<%= item.kod %>">
             <h2 id="tantargy-nev">
                 <%= item.nev %>
@@ -24,11 +25,13 @@
             </p>
             <div id="details-<%= item.kod %>"></div>
         </div>
-        <div id="vendegGomb">
+        <div id="tanarGombok">
             <button class="button-fooldal"
-                onclick="window.location.href='/allomanyVendeg?id=<%= item.kod %>'">Állományok</button>
-            <% }); %>
+                onclick="window.location.href='/allomany?id=<%= item.kod %>'">Állományok</button>
+            <button onclick="window.location.href='/orak?id=<%= item.kod %>'" class="button-fooldal">Órarendhez
+                adás</button>
         </div>
+        <% }); %>
 </body>
 
 </html>

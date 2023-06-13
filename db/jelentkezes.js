@@ -28,14 +28,14 @@ export const insertJelentkezes = (a, b) => {
   return dbConnection.executeQuery(query, [a, b]);
 };
 
-// megnezi, ha az adott diak szerepel mar az adott tantargynal
-export const findDiakTantargyban = (a, b) => {
+// megnezi, ha az adott tanar szerepel mar az adott tantargynal
+export const findTanarTantargyban = (a, b) => {
   const query = 'SELECT * FROM jelentkezes WHERE jelentkezes.tkod=? AND jelentkezes.fnev=?';
   return dbConnection.executeQuery(query, [a, b]);
 };
 
-// kitorol egy adott diakot egy adott tantargytol
+// kitorol egy adott tanart egy adott tantargytol
 export const deleteJelentkezes = (a, b) => {
   const query = 'DELETE FROM jelentkezes WHERE jelentkezes.fnev = ? AND jelentkezes.tkod= ?;';
-  return dbConnection.executeQuery(query, [a, b]);
+  return dbConnection.executeQuery(query, [b, a]);
 };

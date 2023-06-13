@@ -1,15 +1,14 @@
 import express from 'express';
 import * as dbtantargy from '../db/tantargy.js';
-
-const app = express();
+import { authMiddleware } from '../middleware/auth.js';
 
 const router = express.Router();
 
-app.use(express.urlencoded({ extended: true }));
+router.use(express.urlencoded({ extended: true }));
 
-app.use(express.static('public'));
+router.use(express.static('public'));
 
-router.get('/', async (req, res) => {
+router.get('/fooldal', async (req, res) => {
   try {
     // tantargyakrol az informaciot lekeri, hogy majd meg lehessen oket az oldalon jeleniteni
     const tantargyak = await dbtantargy.findAllTantargy();
@@ -19,7 +18,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/tantargy', async (req, res) => {
+router.get('/tantargy', authMiddleware('Admin'), async (req, res) => {
   try {
     const tantargyak = await dbtantargy.findAllTantargy();
     res.render('tantargy.ejs', { tantargyak });
@@ -43,7 +42,7 @@ router.post('/tantargy', async (req, res) => {
       return;
     }
     await dbtantargy.insertTantargy(kod, nev, evfolyam, kurzus, szemi, labor);
-    res.redirect('/');
+    res.redirect('/tanarhozzaad');
   } catch (err) {
     res.status(500).render('error', { message: `A tantárgy beszúrása sikertelen: ${err.message}` });
   }

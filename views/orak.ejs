@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Órarendkészítés</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="orarend">
+        <h1 class="nagy-cimek">Adjon hozzá egy új órát az órarendjéhez!</h1>
+        <form id="ujorarend" action="/orak" method="POST" enctype="multipart/form-data">
+            <label for="kod">Tantárgy kódja:</label>
+            <input type="text" id="kod" name="kod" value="<%=id %>" readonly><br>
+
+            <label for="nev">Tanár felhasználóneve:</label>
+            <input type="text" id="nev" name="nev"><br>
+
+            <label for="mikor">Óra napja:</label>
+            <select id="mikor" name="mikor">
+                <option value="Hétfő">Hétfő</option>
+                <option value="Kedd">Kedd</option>
+                <option value="Szerda">Szerda</option>
+                <option value="Csütörtök">Csütörtök</option>
+                <option value="Péntek">Péntek</option>
+            </select>
+            <br>
+
+            <label for="mettol">Óra kezdete:</label>
+            <input type="time" id="mettol" name="mettol"><br>
+
+            <label for="meddig">Óra vége:</label>
+            <input type="time" id="meddig" name="meddig"><br>
+
+            <label for="tipus">Óra típusa:</label>
+            <select id="tipus" name="tipus">
+                <option value="Előadás">Előadás</option>
+                <option value="Szeminárium">Szeminárium</option>
+                <option value="Labor">Labor</option>
+            </select>
+
+            <br>
+            <input class="submit-gomb" type="submit" value="Elküldés">
+        </form>
+    </div>
+    <script src="./valid.js"></script>
+</body>
+
+</html>

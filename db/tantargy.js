@@ -23,6 +23,13 @@ export const findAllTantargy = () => {
   return dbConnection.executeQuery(query);
 };
 
+// csak azokat a tantargyakat teriti vissza, amelyek hozza vannak rendelve az adott kodu tanarhoz
+export const findAllTantargyTanar = (a) => {
+  const query =
+    ' SELECT * FROM tantargy JOIN jelentkezes on tantargy.kod = jelentkezes.tkod WHERE jelentkezes.fnev = ?';
+  return dbConnection.executeQuery(query, [a]);
+};
+
 // visszateriti a tantargy kurzus, szeminarium, illetve labor oraszamait
 export const showDetails = (kod) => {
   const query = 'SELECT tantargy.kurzus, tantargy.szemi, tantargy.labor FROM tantargy WHERE tantargy.kod = ?';

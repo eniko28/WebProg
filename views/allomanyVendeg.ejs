@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Allomany feltoltese</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1 class="nagy-cimek">A bevezetett állományok a <%=id %> kódú tantárgyhoz a következők:</h1>
+    <% if (allomanyok.length> 0) { %>
+        <ul>
+            <% allomanyok.forEach(function(item) { %>
+                <% if (item.kod==id) { %>
+                    <div id="allomany-<%= item.nev %>">
+                        <%= item.fileNev %>
+                            <a class="download-button" href="./<%= item.nev %>" download>Letöltés</a>
+                    </div>
+                    <% } %>
+                        <% }); %>
+        </ul>
+        <% } else { %>
+            <p>Nincsenek állományok feltöltve ehhez a tantárgyhoz.</p>
+            <% } %>
+</body>
+
+</html>

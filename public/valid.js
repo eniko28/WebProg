@@ -88,3 +88,90 @@ if (form3) {
     }
   });
 }
+
+const form4 = document.getElementById('login');
+if (form4) {
+  const submitBtn4 = form4.querySelector('input[type="submit"]');
+  submitBtn4.disabled = true;
+
+  const validateForm4 = () => {
+    const nev = document.getElementById('nev').value;
+    const password = document.getElementById('jelszo').value;
+
+    if (nev === '' || password === '') {
+      submitBtn4.disabled = true;
+      return false;
+    }
+
+    submitBtn4.disabled = false;
+    return true;
+  };
+  form4.addEventListener('input', () => {
+    validateForm4();
+  });
+
+  form4.addEventListener('submit', (event) => {
+    if (!validateForm4()) {
+      event.preventDefault();
+    }
+  });
+}
+
+const form5 = document.getElementById('register');
+if (form5) {
+  const submitBtn5 = form5.querySelector('input[type="submit"]');
+  submitBtn5.disabled = true;
+
+  const validateForm5 = () => {
+    const nev = document.getElementById('nev').value;
+    const password = document.getElementById('jelszo').value;
+
+    if (nev === '' || password === '') {
+      submitBtn5.disabled = true;
+      return false;
+    }
+
+    submitBtn5.disabled = false;
+    return true;
+  };
+  form5.addEventListener('input', () => {
+    validateForm5();
+  });
+
+  form5.addEventListener('submit', (event) => {
+    if (!validateForm5()) {
+      event.preventDefault();
+    }
+  });
+}
+
+const form6 = document.getElementById('ujorarend');
+if (form6) {
+  const submitBtn6 = form6.querySelector('input[type="submit"]');
+  submitBtn6.disabled = true;
+
+  const validateForm6 = () => {
+    const nev = document.getElementById('kod').value;
+    const password = document.getElementById('nev').value;
+    const mikor = document.getElementById('mikor').value;
+    const mettol = document.getElementById('mettol').value;
+    const meddig = document.getElementById('meddig').value;
+
+    if (nev === '' || password === '' || mikor === '' || mettol === '' || meddig === '') {
+      submitBtn6.disabled = true;
+      return false;
+    }
+
+    submitBtn6.disabled = false;
+    return true;
+  };
+  form6.addEventListener('input', () => {
+    validateForm6();
+  });
+
+  form6.addEventListener('submit', (event) => {
+    if (!validateForm6()) {
+      event.preventDefault();
+    }
+  });
+}

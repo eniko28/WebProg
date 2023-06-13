@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Orarend</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>A <%= tkod %> kódú tanár órarendje:</h1>
+    <table>
+        <tr>
+            <th>Tantárgy kódja</th>
+            <th>Nap</th>
+            <th>Mettől</th>
+            <th>Meddig</th>
+        </tr>
+        <% tantargyak.forEach(function(item) { %>
+            <tr>
+                <td>
+                    <%= item.tkod %>
+                </td>
+                <td>
+                    <%= item.mikor %>
+                </td>
+                <td>
+                    <%= item.mettol %>
+                </td>
+                <td>
+                    <%= item.meddig %>
+                </td>
+            </tr>
+            <% }); %>
+    </table>
+</body>
+
+</html>

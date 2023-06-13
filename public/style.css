@@ -9,7 +9,13 @@ h2 {
   text-decoration: underline;
 }
 
-.button-fooldal, .siker {
+.button-fooldal {
+  background-color: #1B833E;
+  width: 150px;
+  height: 30px;
+}
+
+.siker {
   background-color: #1B833E;
   width: 150px;
   height: 30px;
@@ -23,7 +29,7 @@ div input {
   margin-bottom: 10px;
 }
 
-.show-details {
+.show-details, .tanarokKeresei {
   border: 1px solid black;
   padding: 10px;
   margin-bottom: 20px;
@@ -35,7 +41,7 @@ div input {
   color: #6bb483;
 }
 
-#tantargy-nev, .submit-gomb{
+#tantargy-nev, .submit-gomb, .submit-gomb-keres, .felhasznalo-nev, .felhasznalo-tipus{
   color:#145B2B;
   font-size: 30px;
 }
@@ -52,3 +58,35 @@ label, #felhasznalo-valasztas{
   height: 25px;
   background-color: #1FA260;
 }
+
+#tanarGombok, #adminGomb, #vendegGomb {
+  margin-top: -0.5cm;
+}
+
+table {
+  align-items: center;
+  border-collapse: collapse;
+  width: 100%;
+  background-color: rgba(48, 172, 89, 0.5);
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #1FA260;
+}
+
+#kijelentkezes {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.kisForm {
+  display: none;
+}
+

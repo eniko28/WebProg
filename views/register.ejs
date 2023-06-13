@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="hu">
+<html>
 
 <head>
     <meta charset="UTF-8" />
-    <title>Login</title>
+    <title>User</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <h1 class="nagy-cimek">Üdvözöljük az órarendkészítés weboldalán!</h1>
-    <h2 class="nagy-cimek">Lépjen be az oldalra: </h2>
-    <form id="login" action="/login" method="POST" enctype="multipart/form-data">
+    <h2 class="nagy-cimek">Regisztráljon az oldalra, beírva felhasználónevét és jelszavát </h2>
+    <form id="register" action="/register" method="POST" enctype="multipart/form-data">
         <label for="nev">Név:</label>
         <input type="text" id="nev" name="nev"><br>
 
@@ -18,18 +18,14 @@
         <input type="password" id="jelszo" name="jelszo"><br>
 
         <label for="felhasznalo">Felhasználó típusa:</label>
-        <select name="felhasznaloTipusLogin" id="felhasznalo">
+        <select id="felhasznalo" name="felhasznaloTipusRegister">
             <option value="Vendég">Vendég</option>
             <option value="Tanár">Tanár</option>
             <option value="Admin">Admin</option>
         </select>
         <br>
-        <input class="submit-gomb" type="submit" value="Belépés">
+        <input class="submit-gomb" type="submit" value="Regisztrálás">
     </form>
-    <br>
-    <h2 class="nagy-cimek">Hozzon létre egy új fiókot
-    </h2>
-    <button class="submit-gomb" onclick="window.location.href='/register'">Fiók létrehozása</button>
     <script src="./valid.js"></script>
 </body>
 

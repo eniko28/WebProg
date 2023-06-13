@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Főoldal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body id="keresek">
+    <h1 class="nagy-cimek">A tanárok kérései a következők </h1>
+    <% orak.forEach(function(item) { %>
+        <form id="valaszok" action="/keresek" method="POST" enctype="multipart/form-data">
+            <div class="tanarokKeresei" id="tanarokKeresei-<%= item.tkod %>-<%= item.tnev %>">
+                <label for="tnev-<%= item.tkod %>-<%= item.tnev %>">Tanár felhasználóneve: </label>
+                <input id="tnev-<%= item.tkod %>-<%= item.tnev %>" name="tnev" value="<%= item.tnev %>" readonly>
+                <label for="tkod-<%= item.tkod %>-<%= item.tnev %>">Tantárgy kódja: </label>
+                <input id="tkod-<%= item.tkod %>-<%= item.tnev %>" name="tkod" value="<%= item.tkod %>" readonly>
+
+                <p>Nap: <%= item.mikor %>
+                </p>
+                <p>Mettől: <%= item.mettol %>
+                </p>
+                <p>Meddig: <%= item.meddig %>
+                </p>
+                <p>Óra típusa: <%= item.tipus %>
+                </p>
+
+                <label for="valaszAdmin-<%= item.tkod %>-<%= item.tnev %>">Az admin elfogadja a kérést?</label>
+                <select id="valaszAdmin-<%= item.tkod %>-<%= item.tnev %>" name="adminValasz">
+                    <option value="igen">igen</option>
+                    <option value="nem">nem</option>
+                </select>
+                <br> <br>
+                <input class="submit-gomb-keres" type="submit" value="Válasz elküldése">
+            </div>
+        </form>
+        <% }); %>
+            <script src="keresDelete.js"></script>
+</body>
+
+</html>

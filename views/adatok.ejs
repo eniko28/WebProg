@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Adatok</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1 class="nagy-cimek">Saját adatok:</h1>
+    <p class="felhasznalo-nev">Név: <%= felhasznaloNev %>
+    </p>
+    <p class="felhasznalo-tipus">Felhasználó típusa: <%= tipus %>
+    </p>
+    <button class="submit-gomb">Felhasználónév megváltoztatása</button>
+
+    <form id="kisForm" class="kisForm" action="/adatok" method="POST" enctype="multipart/form-data">
+        <label for="nevRegi">Régi felhasználónév</label>
+        <input type=" text" id="nevRegi" name="nevRegi" value="<%=felhasznaloNev %>" readonly><br>
+        <label for="nev">Új felhasználónév:</label>
+        <input type="text" id="nev" name="nev"><br>
+        <br> <br>
+        <input class="submit-gomb" type="submit" value="Változtatások mentése">
+    </form>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
