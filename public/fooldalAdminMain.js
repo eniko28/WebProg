@@ -40,5 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.location.href = '/';
   }
   const logoutButton = document.getElementById('kijelentkezes');
-  logoutButton.addEventListener('click', logout);
+  if (logoutButton) {
+    logoutButton.addEventListener('click', logout);
+  }
 });

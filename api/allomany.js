@@ -1,4 +1,5 @@
 import express from 'express';
+import fs from 'fs';
 import * as dballomany from '../db/allomany.js';
 
 const app = express();
@@ -11,11 +12,14 @@ const router = express.Router();
 
 router.delete('/allomany/:nev', async (req, res) => {
   const { nev } = req.params;
+  const path = `./uploadDir/${nev}`;
   if (nev === '') {
     res.status(400).send('Hibásan megadott adatok!');
   } else {
     try {
       await dballomany.deleteByName(nev);
+      // az uploadDir mappabol is torlom az allomanyt, nem csak az adatbazisbol
+      fs.unlinkSync(path);
       res.send('Sikeres törlés');
     } catch (err) {
       console.error('Hiba történt:', err);
