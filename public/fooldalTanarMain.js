@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const firstLetter = key.charAt(0).toUpperCase();
           const restOfLetters = key.slice(1);
           const formattedKey = firstLetter + restOfLetters;
-          details += `${formattedKey}: ${bodyJson[0][key]}\n\n\n`;
+          details += `${formattedKey}: ${bodyJson[0][key]}\n\n`;
         });
 
         const detailsContainer = document.getElementById(`details-${kod}`);
