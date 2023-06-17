@@ -10,6 +10,14 @@ export const createTableFelhasznalo = async () => {
       felhasznalo VARCHAR(50)
     );
       `);
+    await dbConnection.executeQuery(`
+      INSERT INTO felhasznalo (nev, jelszo, felhasznalo)
+      SELECT 'admin01', '$2b$10$PWTYAlbeqyHwbbMxgrGsB.kgk.IeukIce0dcAMkRjfY861u8iHLRS', 'Admin'
+      WHERE NOT EXISTS (
+        SELECT 1 FROM felhasznalo WHERE nev = 'admin01' AND jelszo = '$2b$10$PWTYAlbeqyHwbbMxgrGsB.kgk.IeukIce0dcAMkRjfY861u8iHLRS' 
+        AND felhasznalo = 'Admin'
+      );
+    `);
   } catch (err) {
     console.error(`Sikertelen táblalétrehozás: felhasználó: ${err}`);
     process.exit(1);

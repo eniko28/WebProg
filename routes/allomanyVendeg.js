@@ -8,7 +8,7 @@ router.use(express.urlencoded({ extended: true }));
 
 router.use(express.static('public'));
 
-router.get('/allomanyVendeg', authMiddleware(['Vendég']), async (req, res) => {
+router.get('/allomanyVendeg', authMiddleware(['Vendég', 'Admin']), async (req, res) => {
   try {
     // lekeri a kodot a sablonbol
     const { id } = req.query;

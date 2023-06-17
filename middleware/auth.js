@@ -27,7 +27,7 @@ export function authMiddleware(requiredRoles) {
       req.felhasznalo = felhasznalo;
       req.action = action;
     } catch (err) {
-      res.status(401).json({ error: 'Hitelesítési hiba: Érvénytelen token' });
+      res.status(401).json({ error: `Hitelesítési hiba: Érvénytelen token: ${err}` });
       return;
     }
     next();

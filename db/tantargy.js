@@ -17,6 +17,11 @@ export const createTableTantargy = async () => {
   }
 };
 
+export const getEvfolyam = (a, b) => {
+  const query = 'SELECT tantargy.evfolyam FROM tantargy WHERE tantargy.kod = ?';
+  return dbConnection.executeQuery(query, [a, b]);
+};
+
 // visszateriti az osszes oszlopt a tantargy tablabol
 export const findAllTantargy = () => {
   const query = 'SELECT * FROM tantargy';

@@ -19,26 +19,32 @@ router.get('/keresek', authMiddleware(['Admin']), async (req, res) => {
 });
 
 router.post('/keresek', async (req, res) => {
-  const valasz = req.fields.adminValasz;
-  const tanarnev = req.fields.tnev;
-  const tantargykod = req.fields.tkod;
-  const keresek = await dbKeresek.findAllKeresbyTanarAndTantargy(tantargykod, tanarnev);
-  if (valasz === 'igen') {
-    await Promise.all([
-      dbOrak.insertOra(
-        keresek[0].tkod,
-        keresek[0].tnev,
-        keresek[0].mikor,
-        keresek[0].mettol,
-        keresek[0].meddig,
-        keresek[0].tipus,
-      ),
-      dbKeresek.deleteKeres(keresek[0].tkod, keresek[0].tnev),
-    ]);
-  } else {
-    await dbKeresek.deleteKeres(keresek[0].tkod, keresek[0].tnev);
+  try {
+    const valasz = req.fields.adminValasz;
+    const tanarnev = req.fields.tnev;
+    const tantargykod = req.fields.tkod;
+
+    const keresek = await dbKeresek.findAllKeresbyTanarAndTantargy(tantargykod, tanarnev);
+    if (valasz === 'igen') {
+      await Promise.all([
+        dbOrak.insertOra(
+          keresek[0].tkod,
+          keresek[0].tnev,
+          keresek[0].mikor,
+          keresek[0].mettol,
+          keresek[0].meddig,
+          keresek[0].evfolyam,
+          keresek[0].tipus,
+        ),
+        dbKeresek.deleteKeres(keresek[0].tkod, keresek[0].tnev),
+      ]);
+    } else {
+      await dbKeresek.deleteKeres(keresek[0].tkod, keresek[0].tnev);
+    }
+    res.redirect('/keresek');
+  } catch (err) {
+    res.status(500).render('error', { message: `Hiba a keres beküldésekor: ${err.message}` });
   }
-  res.redirect('/keresek');
 });
 
 export default router;

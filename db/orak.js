@@ -10,6 +10,7 @@ export const createTableOrak = async () => {
         mikor VARCHAR(50),
         mettol TIME,
         meddig TIME,
+        evfolyam INT,
         tipus VARCHAR(50)
       )`);
   } catch (err) {
@@ -31,9 +32,9 @@ export const getOrarend = (a) => {
 };
 
 // beszur egy uj orat az orarendbe
-export const insertOra = (a, b, c, d, e, f) => {
-  const query = 'INSERT INTO orak (tkod, tnev, mikor, mettol, meddig, tipus)VALUES (?, ?, ?, ?, ?, ?)';
-  return dbConnection.executeQuery(query, [a, b, c, d, e, f]);
+export const insertOra = (a, b, c, d, e, f, g) => {
+  const query = 'INSERT INTO orak (tkod, tnev, mikor, mettol, meddig, evfolyam, tipus)VALUES (?, ?, ?, ?, ?, ?, ?)';
+  return dbConnection.executeQuery(query, [a, b, c, d, e, f, g]);
 };
 
 // torli az adott orat az orarendbol

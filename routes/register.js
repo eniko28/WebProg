@@ -42,7 +42,7 @@ router.post('/register', async (req, res) => {
 
       await dbfelhasznalo.insertNewUser(felhasznalo, hashWithSalt, action);
 
-      res.redirect('/');
+      res.redirect('/tanarhozzaad?felhasznalo=admin01&action=Admin');
     } catch (err) {
       res.status(500).render('error', { message: `Sikertelen új felhasználó beszúrás az adatbázisba: ${err.message}` });
     }

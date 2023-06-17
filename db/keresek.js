@@ -1,6 +1,5 @@
 import dbConnection from './connection.js';
 
-// letrehozza a keresek tablat, ha az meg nem volt letrehozva
 export const createTableKeresek = async () => {
   try {
     await dbConnection.executeQuery(`CREATE TABLE IF NOT EXISTS keresek (
@@ -10,6 +9,7 @@ export const createTableKeresek = async () => {
         mikor VARCHAR(50),
         mettol TIME,
         meddig TIME,
+        evfolyam INT,
         tipus VARCHAR(50)
       )`);
   } catch (err) {
@@ -28,12 +28,17 @@ export const findAllKeresbyTanarAndTantargy = (a, b) => {
   return dbConnection.executeQuery(query, [a, b]);
 };
 
-export const insertKeres = (a, b, c, d, e, f) => {
-  const query = 'INSERT INTO keresek (tkod, tnev, mikor, mettol, meddig, tipus)VALUES (?, ?, ?, ?, ?, ?)';
-  return dbConnection.executeQuery(query, [a, b, c, d, e, f]);
+export const insertKeres = (a, b, c, d, e, f, g) => {
+  const query = 'INSERT INTO keresek (tkod, tnev, mikor, mettol, meddig, evfolyam, tipus) VALUES (?, ?, ?, ?, ?, ?, ?)';
+  return dbConnection.executeQuery(query, [a, b, c, d, e, f, g]);
 };
 
 export const deleteKeres = (a, b) => {
-  const query = 'DELETE FROM keresek WHERE keresek.tkod = ? AND keresek.tnev= ?;';
+  const query = 'DELETE FROM keresek WHERE keresek.tkod = ? AND keresek.tnev = ?';
   return dbConnection.executeQuery(query, [a, b]);
+};
+
+export const selectTeacherByType = (a, b, c) => {
+  const query = 'SELECT * FROM keresek WHERE keresek.tkod = ? AND keresek.tnev = ? AND keresek.tipus = ?';
+  return dbConnection.executeQuery(query, [a, b, c]);
 };

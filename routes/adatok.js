@@ -8,7 +8,7 @@ router.use(express.urlencoded({ extended: true }));
 
 router.use(express.static('public'));
 
-router.get('/adatok', authMiddleware(['Vendég']), (req, res) => {
+router.get('/adatok', authMiddleware(['Vendég', 'Admin', 'Tanár']), (req, res) => {
   try {
     const felhasznaloNev = req.query.felhasznalo;
     const tipus = req.query.action;

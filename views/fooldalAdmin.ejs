@@ -8,11 +8,13 @@
 </head>
 
 <body id="fooldalAdmin">
+    <a href="/adatok?felhasznalo=<%= felhasznalo %>&action=<%= action %>">Saját adatok</a> <br> <br>
     <button class="button-fooldal" id="kijelentkezes">Kijelentkezés</button>
     <script src="./fooldalAdminMain.js"></script>
     <div>
         <button id="egy" class="button-fooldal" onclick="window.location.href='/tantargy'">Tantárgy hozzáadása</button>
         <button id="ketto" class="button-fooldal" onclick="window.location.href='/keresek'">Tanárok kérései</button>
+        <button class="button-fooldal" onclick="window.location.href='/register'">Személy hozzáadás</button>
         <h1 class="nagy-cimek">Rendeljen hozzá tanárokat tantárgyakhoz </h1>
         <form id="tanarhozzzad" action="/tanarhozzaad" method="POST" enctype="multipart/form-data">
             <label for="usr">Tanár felhasználóneve:</label>

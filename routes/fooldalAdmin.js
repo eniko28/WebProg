@@ -9,13 +9,11 @@ router.use(express.urlencoded({ extended: true }));
 
 router.use(express.static('public'));
 
-router.get('/tanarhozzaad', authMiddleware(['Tanar']), async (req, res) => {
+router.get('/tanarhozzaad', authMiddleware(['Admin']), async (req, res) => {
   try {
-    // az osszes felhasznalonevet, illetve az osszes tantargy kodjat amelyek szerepelnek az adatbazisban, lementi,
-    // azert hogy majd meg tudja oket jeleniteni az oldalon
+    const { felhasznalo, action } = req.query;
     const [felhasznalok, tantargyak] = await Promise.all([dbfelhasznalo.getTeachers(), dbtantargy.findAllTantargy()]);
-    const { kod } = req.query;
-    res.render('fooldalAdmin.ejs', { felhasznalok, kod, tantargyak });
+    res.render('fooldalAdmin.ejs', { tantargyak, felhasznalok, felhasznalo, action });
   } catch (err) {
     res.status(500).render('error', { message: `A felhasználó listázása sikertelen: ${err.message}` });
   }

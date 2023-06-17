@@ -51,9 +51,9 @@ router.post('/login', async (req, res) => {
           if (action === 'Vendég') {
             res.render('fooldal.ejs', { tantargyak, felhasznalo, action });
           } else if (action === 'Tanár') {
-            res.render('fooldalTanar.ejs', { tantargyakTanar, felhasznalo });
+            res.render('fooldalTanar.ejs', { tantargyakTanar, felhasznalo, action });
           } else if (action === 'Admin') {
-            res.render('fooldalAdmin.ejs', { tantargyak, felhasznalok });
+            res.render('fooldalAdmin.ejs', { tantargyak, felhasznalok, felhasznalo, action });
           }
         } else {
           res.send('Sikertelen bejelentkezés!');

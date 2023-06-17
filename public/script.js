@@ -6,5 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Gombra kattintáskor hívódik meg a függvény
   const gomb = document.querySelector('button');
-  gomb.addEventListener('click', mutasdKisFormot);
+  if (gomb) {
+    gomb.addEventListener('click', mutasdKisFormot);
+  }
 });
