@@ -61,16 +61,16 @@ if (form2) {
   });
 }
 
-const form3 = document.getElementById('ujfelhasznalo');
+const form3 = document.getElementById('kisForm');
 if (form3) {
   const submitBtn3 = form3.querySelector('input[type="submit"]');
   submitBtn3.disabled = true;
 
   const validateForm3 = () => {
-    const kod = document.getElementById('kod').value;
-    const usr = document.getElementById('usr').value;
+    const regiNev = document.getElementById('nevRegi').value;
+    const ujNev = document.getElementById('nev').value;
 
-    if (kod === '' || usr === '') {
+    if (regiNev === '' || ujNev === '') {
       submitBtn3.disabled = true;
       return false;
     }

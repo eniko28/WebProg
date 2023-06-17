@@ -23,6 +23,11 @@ export const findAllKeres = () => {
   return dbConnection.executeQuery(query);
 };
 
+export const getOra = (a, b, c) => {
+  const query = 'SELECT * FROM keresek WHERE keresek.mettol = ? AND keresek.meddig = ? AND keresek.mikor = ?';
+  return dbConnection.executeQuery(query, [a, b, c]);
+};
+
 export const findAllKeresbyTanarAndTantargy = (a, b) => {
   const query = 'SELECT * FROM keresek WHERE keresek.tkod = ? and keresek.tnev = ?';
   return dbConnection.executeQuery(query, [a, b]);

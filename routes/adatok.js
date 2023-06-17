@@ -22,6 +22,7 @@ router.post('/adatok', async (req, res) => {
   try {
     const ujNev = req.fields.nev;
     const regiNev = req.fields.nevRegi;
+    // az uj felhasznalonevnek kulonboznie kell az aktualistol
     if (ujNev !== regiNev) {
       await dbfelhasznalo.updateFelhasznalo(ujNev, regiNev);
       res.redirect(`/adatok?felhasznalo=${ujNev}&action=Vendég`);

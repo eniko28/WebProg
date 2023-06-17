@@ -1,8 +1,8 @@
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import * as dbKeresek from '../db/keresek.js';
-import * as dbfelhasznalo from '../db/felhasznalok.js';
 import * as dbTantargy from '../db/tantargy.js';
+import * as dbOrak from '../db/orak.js';
 import { authMiddleware } from '../middleware/auth.js';
 
 const router = express.Router();
@@ -40,6 +40,16 @@ function ellenorizIdo(tmettol, tmeddig) {
   return idoDiffHours > 2 || (idoDiffHours === 2 && idoDiffMinutes > 0);
 }
 
+// ellenorzi, hogy a kivalsztott ora ne utkozzon egy mar elozoleg kivalasztottal
+async function ellenorizOra(tmettol, tmeddig, tmikor) {
+  const joOraKeresek = await dbKeresek.getOra(tmettol, tmeddig, tmikor);
+  const joOraOrak = await dbOrak.getOra(tmettol, tmeddig, tmikor);
+  if (joOraKeresek.length > 0 || joOraOrak.length > 0) {
+    return false;
+  }
+  return true;
+}
+
 router.post('/orak', async (req, res) => {
   const tkod = req.fields.kod;
   const tnev = req.fields.nev;
@@ -68,15 +78,6 @@ router.post('/orak', async (req, res) => {
       return;
     }
 
-    // nem a sajat felhasznalonevet adta meg
-    const joFelhasznalo = await dbfelhasznalo.selectTeacher(tnev);
-    if (joFelhasznalo.length === 0) {
-      res
-        .status(400)
-        .render('error', { message: 'Hiba a felhasználónév megadásakor! A saját felhasználónevét kell megadni!' });
-      return;
-    }
-
     // ellenorzi, hogy megfelelo evfolyamnak valasztotta-e ki az orat
     const joEvfolyam = await dbTantargy.getEvfolyam(tkod);
     const evfolyam = parseInt(tevfolyam, 10);
@@ -85,6 +86,13 @@ router.post('/orak', async (req, res) => {
       return;
     }
 
+    // ellenorzi, hogy a kivalasztott ora ne utkozzon egy masikkal
+    if (!(await ellenorizOra(tmettol, tmeddig, tmikor))) {
+      res.status(400).render('error', {
+        message: 'A kiválasztott óra ütközik egy már kiválasztott órával! Válasszon más időpontot!',
+      });
+      return;
+    }
     await dbKeresek.insertKeres(tkod, tnev, tmikor, tmettol, tmeddig, tevfolyam, oraTipus);
 
     res.redirect(`/fooldalTanar?felhasznalo=${tnev}`);

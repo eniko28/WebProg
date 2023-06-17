@@ -25,6 +25,11 @@ export const findAllOra = () => {
   return dbConnection.executeQuery(query);
 };
 
+export const getOra = (a, b, c) => {
+  const query = 'SELECT * FROM orak WHERE orak.mettol = ? AND orak.meddig = ? AND orak.mikor = ?';
+  return dbConnection.executeQuery(query, [a, b, c]);
+};
+
 // visszateriti egy adott id-ju tanar orarendjet
 export const getOrarend = (a) => {
   const query = 'SELECT * FROM orak WHERE orak.tnev = ?';
