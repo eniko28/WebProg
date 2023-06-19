@@ -95,7 +95,7 @@ router.post('/orak', async (req, res) => {
     }
     await dbKeresek.insertKeres(tkod, tnev, tmikor, tmettol, tmeddig, tevfolyam, oraTipus);
 
-    res.redirect(`/fooldalTanar?felhasznalo=${tnev}`);
+    res.redirect(`/fooldalTanar?felhasznalo=${tnev}&action=Tanár`);
   } catch (err) {
     res.status(500).render('error', { message: `Hiba: ${err.message}` });
   }
