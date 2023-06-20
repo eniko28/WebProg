@@ -31,7 +31,8 @@
                 onclick="window.location.href='/allomany?id=<%= item.kod %>'">Állományok</button>
             <button onclick="window.location.href='/orak?id=<%= item.kod %>'" class="button-fooldal">Órarendhez
                 adás</button>
-            <a href="/syllabus?tkod=<%= item.kod %>&tnev=<%= item.nev %>&felhasznalo=<%= felhasznalo %>">Syllabus
+            <a class="a_id"
+                href="/syllabus?tkod=<%= item.kod %>&tnev=<%= item.nev %>&felhasznalo=<%= felhasznalo %>">Syllabus
                 hozzáadása</a>
         </div>
         <% }); %>
