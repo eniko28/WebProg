@@ -4,38 +4,45 @@
 <head>
     <meta charset="UTF-8" />
     <title>Orarend</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <h1>A <%= tkod %> kódú tanár órarendje:</h1>
-    <table>
-        <tr>
-            <th>Tantárgy kódja</th>
-            <th>Évfolyam</th>
-            <th>Nap</th>
-            <th>Mettől</th>
-            <th>Meddig</th>
-        </tr>
-        <% tantargyak.forEach(function(item) { %>
-            <tr>
-                <td>
-                    <%= item.tkod %>
-                </td>
-                <td>
-                    <%= item.evfolyam %>
-                </td>
-                <td>
-                    <%= item.mikor %>
-                </td>
-                <td>
-                    <%= item.mettol %>
-                </td>
-                <td>
-                    <%= item.meddig %>
-                </td>
+    <br>
+    <h1 class="text-center">A <%= tkod %> kódú tanár órarendje:</h1> <br>
+    <table class="table table-bordered">
+        <thead>
+            <tr class="bg-success text-black">
+                <th>Tantárgy kódja</th>
+                <th>Évfolyam</th>
+                <th>Nap</th>
+                <th>Mettől</th>
+                <th>Meddig</th>
             </tr>
-            <% }); %>
+        </thead>
+        <tbody>
+            <% tantargyak.forEach(function(item) { %>
+                <tr>
+                    <td>
+                        <%= item.tkod %>
+                    </td>
+                    <td>
+                        <%= item.evfolyam %>
+                    </td>
+                    <td>
+                        <%= item.mikor %>
+                    </td>
+                    <td>
+                        <%= item.mettol %>
+                    </td>
+                    <td>
+                        <%= item.meddig %>
+                    </td>
+                </tr>
+                <% }); %>
+        </tbody>
     </table>
 </body>
 

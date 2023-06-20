@@ -58,21 +58,11 @@ label, #felhasznalo-valasztas{
 }
 
 table {
-  align-items: center;
-  border-collapse: collapse;
-  width: 100%;
   background-color: rgba(48, 172, 89, 0.5);
 }
 
 th, td {
-  border: 1px solid black;
-  padding: 8px;
-  text-align: center;
   width: 20%;
-}
-
-th {
-  background-color: #1FA260;
 }
 
 #kijelentkezes {
