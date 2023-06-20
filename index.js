@@ -26,6 +26,8 @@ import fooldalTanar from './routes/fooldalTanar.js';
 import fooldalAdmin from './routes/fooldalAdmin.js';
 import orakRouter from './routes/orak.js';
 import keresekRouter from './routes/keresek.js';
+import syllabusRouter from './routes/syllabus.js';
+import syllabusVendegRouter from './routes/syllabusVendeg.js';
 import { authMiddleware } from './middleware/auth.js';
 
 const app = express();
@@ -62,6 +64,8 @@ app.use('/', adatokRouter);
 app.use('/', fooldalAdmin);
 app.use('/', fooldalTanar);
 app.use('/', allomanyRoutes);
+app.use('/', syllabusRouter);
+app.use('/', syllabusVendegRouter);
 app.use('/', jelentkezesRoutes);
 app.use('/', allomanyApi);
 app.use('/', tantargyApi);

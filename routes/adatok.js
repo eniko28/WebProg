@@ -28,6 +28,8 @@ router.post('/adatok', async (req, res) => {
       res.redirect(`/adatok?felhasznalo=${ujNev}&action=Vendég`);
       return;
     }
+    res.status(500).render('error', { message: 'Az új felhasználónévnek különböznie kell a regitől!' });
+    return;
   } catch (err) {
     res.status(500).render('error', { message: `Hiba:  ${err.message}` });
   }

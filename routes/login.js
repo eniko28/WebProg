@@ -29,16 +29,35 @@ router.post('/login', async (req, res) => {
   const action = req.fields.felhasznaloTipusLogin;
 
   try {
+    // ellenorzom, hogy minden mezo ki legyen toltve
     if (!password || !felhasznalo || !action) {
-      res.send('Minden mezo kitoltese kotelezo!');
+      res.status(400).render('error', { message: 'Minden mező kitöltése kötelező!' });
     } else {
-      const [typeFromDatabase, felhasznalok, tantargyak, tantargyakTanar] = await Promise.all([
+      const [typeFromDatabase, felhasznalok, tantargyak, tantargyakTanar, nevek] = await Promise.all([
         dbfelhasznalo.getType(felhasznalo),
         dbfelhasznalo.getTeachers(),
         dbtantargy.findAllTantargy(),
         dbtantargy.findAllTantargyTanar(felhasznalo),
+        dbfelhasznalo.selectUsers(),
       ]);
 
+      // a felhasznalonev amit megadtunk nincs regisztralva meg
+      const ok = nevek.some((obj) => obj.nev.includes(felhasznalo));
+      if (!ok) {
+        res.status(400).render('error', { message: 'A megadott névvel nincs felhasználó regisztrálva!' });
+        return;
+      }
+
+      // a megadott felhasznalonev nem a neki megfelelo szerepkorrel probal bejelentkezni
+      const type = JSON.stringify(typeFromDatabase[0].felhasznalo).replaceAll('"', '');
+      if (type !== action) {
+        res
+          .status(400)
+          .render('error', { message: 'A megadott felhasználónév nem ebben a szerepkörben van regisztrálva!' });
+        return;
+      }
+
+      // jelszoellenorzes
       const passwordFromDatabase = await dbfelhasznalo.getPassword(felhasznalo);
       const match = await bcrypt.compare(password, passwordFromDatabase[0].jelszo);
 
@@ -47,19 +66,18 @@ router.post('/login', async (req, res) => {
         const token = jwt.sign({ felhasznalo, action }, secret, { expiresIn: '7d' });
         res.cookie('Token', token);
 
-        if (action === typeFromDatabase[0].felhasznalo) {
-          if (action === 'Vendég') {
-            res.render('fooldal.ejs', { tantargyak, felhasznalo, action });
-          } else if (action === 'Tanár') {
-            res.render('fooldalTanar.ejs', { tantargyakTanar, felhasznalo, action });
-          } else if (action === 'Admin') {
-            res.render('fooldalAdmin.ejs', { tantargyak, felhasznalok, felhasznalo, action });
-          }
-        } else {
-          res.send('Sikertelen bejelentkezés!');
+        // a szerepkornek megfelelo oldalt renderel
+        if (action === 'Vendég') {
+          res.render('fooldal.ejs', { tantargyak, felhasznalo, action });
+        } else if (action === 'Tanár') {
+          res.render('fooldalTanar.ejs', { tantargyakTanar, felhasznalo, action });
+          return;
+        } else if (action === 'Admin') {
+          res.render('fooldalAdmin.ejs', { tantargyak, felhasznalok, felhasznalo, action });
+          return;
         }
       } else {
-        res.send('Nem jó a felhasználónév vagy jelszó');
+        res.status(400).render('error', { message: 'Hibás jelszavat adott meg. Próbálja újra!' });
         return;
       }
     }

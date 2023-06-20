@@ -29,18 +29,25 @@ export const findAllFelhasznalo = () => {
   return dbConnection.executeQuery(query);
 };
 
+// visszateriti az adott nevu felhasznalorol az informaciokat
 export const bejelentkezettFelhaasznalok = (a) => {
-  const query = 'SELECT felhasznalo.nev FROM felhasznalo WHERE felhasznalo.nev = ?';
+  const query = 'SELECT * FROM felhasznalo WHERE felhasznalo.nev = ?';
   return dbConnection.executeQuery(query, [a]);
 };
 
-export const findAllFelhasznaloNew = () => {
+export const findAllFelhasznaloNev = () => {
   const query = 'SELECT * FROM felhasznalo';
   return dbConnection.executeQuery(query);
 };
 
+// az osszes felhasznalo nevet teriti vissza
+export const selectUsers = () => {
+  const query = 'SELECT felhasznalo.nev FROM felhasznalo';
+  return dbConnection.executeQuery(query);
+};
+
+// beszur egy uj felhasznalot a tablaba
 export const insertNewUser = (a, b, c) => {
-  // const hashedPassword = await bcrypt.hash(b.toString(), 10);
   const query = 'INSERT INTO felhasznalo VALUES (?, ?, ?)';
   return dbConnection.executeQuery(query, [a, b, c]);
 };
@@ -50,11 +57,13 @@ export const getPassword = (a) => {
   return dbConnection.executeQuery(query, [a]);
 };
 
+// az adott nevu felhasznalonak a szerepkoret teriti vissza
 export const getType = (a) => {
   const query = 'SELECT felhasznalo.felhasznalo FROM felhasznalo WHERE felhasznalo.nev = ?';
   return dbConnection.executeQuery(query, [a]);
 };
 
+// visszateriti az osszes Tanar szerepkorben beosztott felhasznalo nevet
 export const getTeachers = () => {
   const query = 'SELECT felhasznalo.nev FROM felhasznalo WHERE felhasznalo.felhasznalo = "Tanár"';
   return dbConnection.executeQuery(query);

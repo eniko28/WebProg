@@ -10,6 +10,7 @@ app.use(express.static('public'));
 
 const router = express.Router();
 
+// torol egy megadott nevu allomanyt
 router.delete('/allomany/:nev', async (req, res) => {
   const { nev } = req.params;
   const path = `./uploadDir/${nev}`;

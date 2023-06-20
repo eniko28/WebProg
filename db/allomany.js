@@ -21,7 +21,7 @@ export const findAllAllomany = () => {
   return dbConnection.executeQuery(query);
 };
 
-// visszaterit minden oszlopott az allomany tablabol, amelynek az kodja adva van
+// visszaterit minden oszlopott az allomany tablabol, amelynek a kodja adott
 export const findAllAllomanyById = (id) => {
   const query = 'SELECT * FROM allomany WHERE allomany.kod = ?';
   return dbConnection.executeQuery(query, [id]);

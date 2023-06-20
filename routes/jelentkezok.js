@@ -40,15 +40,27 @@ router.post('/tanarhozzaad', async (req, res) => {
     const tanartantargyban = await dbjelentkezes.findTanarTantargyban(kod, usr);
     if (action === 'belep' && tanartantargyban.length === 0) {
       await dbjelentkezes.insertJelentkezes(kod, usr);
-      res.render('success', { message: `A ${usr} tanár sikeresen hozzárendelve a ${kod} tantárgyhoz!` });
+      res.render('success.ejs', {
+        usr,
+        message: `A ${usr} tanár sikeresen hozzárendelve a ${kod} tantárgyhoz!`,
+      });
     } else if (action === 'belep' && tanartantargyban.length !== 0) {
-      res.render('success', { message: `A ${usr} felhasználó már hozzá van adva a ${kod} tantárgyhoz!` });
+      res.render('success.ejs', {
+        usr,
+        message: `A ${usr} felhasználó már hozzá van adva a ${kod} tantárgyhoz!`,
+      });
     } else if (action === 'kilep' && tanartantargyban.length !== 0) {
       // ha a tanart toroljuk egy adott tantargytol, akkor az orarendben is toroljuk
       await Promise.all([dbjelentkezes.deleteJelentkezes(kod, usr), dbOrak.deleteOra(kod, usr)]);
-      res.render('success', { message: `A ${usr} tanár sikeresen törölve a ${kod} tantárgytól!` });
+      res.render('success.ejs', {
+        usr,
+        message: `A ${usr} tanár sikeresen törölve a ${kod} tantárgytól!`,
+      });
     } else if (action === 'kilep' && tanartantargyban.length === 0) {
-      res.render('success', { message: `A ${usr} tanár nincs hozzárendelve még a ${kod} tantárgyhoz!` });
+      res.render('success.ejs', {
+        usr,
+        message: `A ${usr} tanár nincs hozzárendelve még a ${kod} tantárgyhoz!`,
+      });
     }
   } catch (err) {
     res.status(500).render('error', { message: `Hiba: ${err.message}` });

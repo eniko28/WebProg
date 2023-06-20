@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1 class="nagy-cimek">Adjon hozzá syllabus-t a(z) <%= tantargyNev %> órához!</h1>
+    <form id="syllabus" action="/syllabus" method="POST" enctype="multipart/form-data">
+        <label for="kod">Kód:</label>
+        <input type="number" id="kod" name="kod" value="<%= tantargyKod %>" readonly><br> <br>
+        <label for="kod">Tanár felhasználóneve:</label>
+        <input type="text" id="nev" name="nev" value="<%= tanarNev %>" readonly><br> <br>
+        <label for="info">Syllabus:</label> <br>
+        <textarea id="info" name="info" rows="10" cols="50"><%= syllabusInfo %></textarea> <br> <br>
+
+        <input class="submit-gomb" type="submit" value="Syllabus mentése">
+    </form>
+    <script src="./valid.js"></script>
+</body>
+
+</html>

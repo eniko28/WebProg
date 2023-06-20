@@ -10,7 +10,7 @@
 <body id="fooldalTanar">
     <a href="/adatok?felhasznalo=<%= felhasznalo %>&action=<%= action %>">Saját adatok</a> <br> <br>
     <button class="button-fooldal" id="kijelentkezes">Kijelentkezés</button>
-    <script src="./fooldalTanarMain.js"></script>
+    <script src="./fooldalMain.js"></script>
     <button class="button-fooldal" onclick="window.location.href='/orarend?tkod=<%= felhasznalo %>'">Órarend
         megtekíntése</button>
     <h1 class="nagy-cimek">Már bevezetett tantárgyak: </h1>
@@ -31,6 +31,8 @@
                 onclick="window.location.href='/allomany?id=<%= item.kod %>'">Állományok</button>
             <button onclick="window.location.href='/orak?id=<%= item.kod %>'" class="button-fooldal">Órarendhez
                 adás</button>
+            <a href="/syllabus?tkod=<%= item.kod %>&tnev=<%= item.nev %>&felhasznalo=<%= felhasznalo %>">Syllabus
+                hozzáadása</a>
         </div>
         <% }); %>
 </body>

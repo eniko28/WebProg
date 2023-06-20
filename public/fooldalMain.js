@@ -35,6 +35,30 @@ document.addEventListener('DOMContentLoaded', () => {
     element.addEventListener('click', showDetailsOnClick(kod));
   }
 
+  const deleteByName = async (nev) => {
+    try {
+      const result = await fetch(`./allomany/${nev}`, { method: 'DELETE' });
+      if (result.status === 200) {
+        document.getElementById(`allomany-${nev}`).remove();
+        alert('Az állomány sikeresen törölve lett!');
+      } else {
+        alert('Hiba az állomány törlésekor!');
+      }
+    } catch (error) {
+      console.error('Hiba történt az állomány törlése során:', error);
+      alert('Hiba történt az állomány törlése során. Kérlek, próbáld újra később!');
+    }
+  };
+
+  const deleteButtons = document.getElementsByClassName('delete-button');
+  for (let i = 0; i < deleteButtons.length; i++) {
+    const button = deleteButtons[i];
+    const nev = button.getAttribute('data-nev');
+    button.addEventListener('click', () => {
+      deleteByName(nev);
+    });
+  }
+
   function logout() {
     document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
     window.location.href = '/';
@@ -42,5 +66,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const logoutButton = document.getElementById('kijelentkezes');
   if (logoutButton) {
     logoutButton.addEventListener('click', logout);
+  }
+
+  const mutasdKisFormot = () => {
+    const kisForm = document.getElementById('kisForm');
+    if (kisForm) {
+      kisForm.style.display = 'block';
+    }
+  };
+
+  const gomb = document.querySelector('button');
+  if (gomb) {
+    gomb.addEventListener('click', mutasdKisFormot);
   }
 });

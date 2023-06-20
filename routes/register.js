@@ -26,9 +26,10 @@ router.post('/register', async (req, res) => {
 
   // uresen hagyott mezovel nem lehet bekuldeni az urlapot
   if (!password || !felhasznalo || !action) {
-    res.send('Minden mezo kitoltese kotelezo');
+    res.status(400).render('error', { message: 'Minden mező kitöltése kötelező!' });
   } else {
     try {
+      // a jelszavat hash-elve menti el
       const [hashWithSalt, users] = await Promise.all([
         bcrypt.hash(password, 10),
         dbfelhasznalo.bejelentkezettFelhaasznalok(felhasznalo),
@@ -36,10 +37,11 @@ router.post('/register', async (req, res) => {
 
       // nem lehet regisztralni egy olyan felhasznalonevvel, amivel mar letezik felhasznalo
       if (users.length !== 0) {
-        res.send('Foglalt felhasznalonev!');
+        res.status(400).render('error', { message: 'A megadott felhasználónév foglalt!' });
         return;
       }
 
+      // beszurja a felhasznalot az adatbazisba
       await dbfelhasznalo.insertNewUser(felhasznalo, hashWithSalt, action);
 
       res.redirect('/tanarhozzaad?felhasznalo=admin01&action=Admin');

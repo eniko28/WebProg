@@ -8,15 +8,6 @@ router.use(express.urlencoded({ extended: true }));
 
 router.use(express.static('public'));
 
-router.get('/fooldal', async (req, res) => {
-  try {
-    const tantargyak = await dbtantargy.findAllTantargy();
-    res.render('fooldal.ejs', { tantargyak });
-  } catch (err) {
-    res.status(500).render('error', { message: `A tantárgyak listázása sikertelen: ${err.message}` });
-  }
-});
-
 router.get('/tantargy', authMiddleware(['Admin']), async (req, res) => {
   try {
     const tantargyak = await dbtantargy.findAllTantargy();

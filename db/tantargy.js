@@ -9,7 +9,9 @@ export const createTableTantargy = async () => {
       evfolyam INT,
       kurzus INT,
       szemi INT,
-      labor INT);
+      labor INT,
+      syllabus TEXT(10000)
+    );
     `);
   } catch (err) {
     console.error(`Sikertelen táblalétrehozás: tantárgy: ${err}`);
@@ -22,16 +24,17 @@ export const getEvfolyam = (a, b) => {
   return dbConnection.executeQuery(query, [a, b]);
 };
 
-// visszateriti az osszes oszlopt a tantargy tablabol
+// visszateriti az adott informaciokat az osszes tantargyrol
 export const findAllTantargy = () => {
-  const query = 'SELECT * FROM tantargy';
+  const query =
+    'SELECT tantargy.kod, tantargy.nev, tantargy.evfolyam, tantargy.kurzus, tantargy.szemi, tantargy.labor FROM tantargy';
   return dbConnection.executeQuery(query);
 };
 
-// csak azokat a tantargyakat teriti vissza, amelyek hozza vannak rendelve az adott kodu tanarhoz
+// csak azokat a tantargyakat teriti vissza, amelyek hozza vannak rendelve az adott nevu tanarhoz
 export const findAllTantargyTanar = (a) => {
-  const query =
-    ' SELECT * FROM tantargy JOIN jelentkezes on tantargy.kod = jelentkezes.tkod WHERE jelentkezes.fnev = ?';
+  const query = ` SELECT tantargy.kod, tantargy.nev, tantargy.evfolyam, tantargy.kurzus, tantargy.szemi, tantargy.labor
+     FROM tantargy JOIN jelentkezes on tantargy.kod = jelentkezes.tkod WHERE jelentkezes.fnev = ?`;
   return dbConnection.executeQuery(query, [a]);
 };
 
@@ -43,12 +46,24 @@ export const showDetails = (kod) => {
 
 // beszur a tantargy tablaba egy uj tantargyat
 export const insertTantargy = (a, b, c, d, e, f) => {
-  const query = 'INSERT INTO tantargy VALUES (?, ?, ?, ?, ?, ?);';
+  const query = 'INSERT INTO tantargy(kod, nev, evfolyam, kurzus, szemi, labor) VALUES (?, ?, ?, ?, ?, ?);';
   return dbConnection.executeQuery(query, [a, b, c, d, e, f]);
+};
+
+export const insertSyllabus = (syllabus, kod) => {
+  const query = 'UPDATE tantargy SET syllabus = ? WHERE kod = ?;';
+  return dbConnection.executeQuery(query, [syllabus, kod]);
 };
 
 // kod alapjan keres a tantargy tablaban
 export const findTantargyKod = (a) => {
-  const query = 'SELECT * FROM tantargy WHERE tantargy.kod=?';
+  const query =
+    'SELECT tantargy.kod, tantargy.nev, tantargy.evfolyam, tantargy.kurzus, tantargy.szemi, tantargy.labor FROM tantargy WHERE tantargy.kod=?';
+  return dbConnection.executeQuery(query, [a]);
+};
+
+// adott kodu tantargyrol visszateriti a syllabust, kodjat es nevet
+export const getSyllabus = (a) => {
+  const query = 'SELECT tantargy.syllabus, tantargy.kod, tantargy.nev FROM tantargy WHERE tantargy.kod=?';
   return dbConnection.executeQuery(query, [a]);
 };
