@@ -1,4 +1,5 @@
 import express from 'express';
+import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
@@ -21,7 +22,8 @@ router.get('/', (req, res) => {
   }
 });
 
-const secret = '1c28d07215544bd1b24faccad6c14a04';
+dotenv.config();
+const secret = process.env.SECRET;
 
 router.post('/login', async (req, res) => {
   const password = req.fields.jelszo;
